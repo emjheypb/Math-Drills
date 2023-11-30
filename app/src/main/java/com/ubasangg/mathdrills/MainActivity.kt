@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var operationButtons: List<Button>
     private lateinit var difficultyButtons: List<Button>
 
-    private val DEFAULT_ATTEMPTS = 3
+    private val DEFAULT_ATTEMPTS = 99
 
     private var currTimerSeconds: TimerSeconds? = null
     private var currOperation: Operation? = null
     private var currDifficulty: Difficulty? = null
-    private var attempts = 0
+    private var attempts = mutableListOf<Int>(0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         this.binding.btnStart.setOnClickListener(this)
         this.binding.tvVersion.text = getString(R.string.words, "v$version")
+        this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, DEFAULT_ATTEMPTS)
     }
 
     override fun onResume() {
@@ -82,11 +83,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         val dateToday = LocalDate.now().toString()
 
-        attempts = this.sharedPreferences.getInt(SharedPrefRef.SP_ATTEMPTS.toString(), 0)
+        for(timex in TimerSeconds.entries) {
+            attempts[timex.index] = this.sharedPreferences.getInt(timex.spName.toString(), 0)
+        }
 
         if (spDate != dateToday) {
-            attempts = this.DEFAULT_ATTEMPTS
-            this.prefEditor.putInt(SharedPrefRef.SP_ATTEMPTS.toString(), DEFAULT_ATTEMPTS)
+            for(timex in TimerSeconds.entries) {
+                attempts[timex.index] = this.DEFAULT_ATTEMPTS
+                this.prefEditor.putInt(timex.spName.toString(), DEFAULT_ATTEMPTS)
+            }
             this.prefEditor.putString(SharedPrefRef.SP_CURR_DATE.toString(), dateToday)
             this.prefEditor.apply()
         }
@@ -103,7 +108,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             this.binding.btnStart.isEnabled = false
         }
 
-        this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, attempts)
+
 
         super.onResume()
     }
@@ -115,9 +120,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
 
         this.binding.btnStart.isEnabled =
-            (currTimerSeconds != null && currOperation != null && currDifficulty != null && attempts > 0)
+            (currTimerSeconds != null && currOperation != null && currDifficulty != null && attempts[currTimerSeconds!!.index] > 0)
         this.binding.tvHighscoreLbl.text = getString(R.string.lbl_high_score, 0)
         this.binding.tvHighscoreLbl.visibility = View.VISIBLE
+
+        this.binding.tvAttemptsLbl.text = if(currTimerSeconds == null) getString(R.string.lbl_attempts_remaining, 0) else getString(R.string.lbl_attempts_remaining, attempts[currTimerSeconds!!.index])
 
         val highScoreDS = sharedPreferences.getString(SharedPrefRef.SP_HIGH_SCORES.toString(), "")
         val typeToken = object : TypeToken<List<HighScore>>() {}.type
@@ -161,8 +168,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             this.binding.btnStart -> {
                 val attempts =
-                    this.sharedPreferences.getInt(SharedPrefRef.SP_ATTEMPTS.toString(), 0)
-                this.prefEditor.putInt(SharedPrefRef.SP_ATTEMPTS.toString(), attempts - 1)
+                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0)
+                this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
 
                 val level =
                     gson.toJson(Level(currTimerSeconds!!, currOperation!!, currDifficulty!!))
