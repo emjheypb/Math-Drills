@@ -3,11 +3,11 @@ package com.ubasangg.mathdrills
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import android.view.KeyEvent
+import android.os.Handler
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -20,7 +20,7 @@ import com.ubasangg.mathdrills.enums.SharedPrefRef
 import com.ubasangg.mathdrills.enums.TimerSeconds
 
 
-class DrillStartActivity : AppCompatActivity() {
+class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private lateinit var binding: ActivityDrillStartBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var prefEditor: SharedPreferences.Editor
@@ -34,6 +34,8 @@ class DrillStartActivity : AppCompatActivity() {
     private var answer:Long = 0
     private val highScores = mutableListOf<HighScore>()
     private var highscore = 0
+
+    private lateinit var buttonsNumber: List<Button>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,29 +79,14 @@ class DrillStartActivity : AppCompatActivity() {
         this.binding.btnHome.setOnClickListener {
             finish()
         }
-        this.binding.etAnswer.requestFocus()
-    }
 
-    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
-        return when(keyCode) {
-            KeyEvent.KEYCODE_ENTER -> {
-                val userAnswer = this.binding.etAnswer.text.toString().toLongOrNull()
+        buttonsNumber = listOf(this.binding.btn0, this.binding.btn1, this.binding.btn2, this.binding.btn3, this.binding.btn4, this.binding.btn5, this.binding.btn6, this.binding.btn7, this.binding.btn8, this.binding.btn9, this.binding.btn0)
 
-                if(userAnswer != null && userAnswer == answer) {
-                    score++
-                    this.binding.tvScore.text = getString(R.string.number, score)
-                }
-
-                this.binding.etAnswer.text.clear()
-                generateProblem()
-
-                val imm = getSystemService(InputMethodManager::class.java)
-                imm.showSoftInput(this.binding.etAnswer, InputMethodManager.SHOW_IMPLICIT)
-
-                true
-            }
-            else -> super.onKeyUp(keyCode, event)
-        }
+        for(btn in buttonsNumber) btn.setOnClickListener(this)
+        this.binding.btnClear.setOnClickListener(this)
+        this.binding.btnSign.setOnClickListener(this)
+        this.binding.btnEquals.setOnClickListener(this)
+        this.binding.btnBackspace.setOnClickListener(this)
     }
 
     private fun startTimer() {
@@ -113,9 +100,14 @@ class DrillStartActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val imm = getSystemService(InputMethodManager::class.java)
-                imm.hideSoftInputFromWindow(binding.etAnswer.windowToken, 0)
-                binding.etAnswer.isEnabled = false
+                for(btn in buttonsNumber) btn.isEnabled = false
+                binding.btnEquals.isEnabled = false
+
+                val animationFadeOut = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_out)
+                binding.clKeyboard.startAnimation(animationFadeOut)
+                Handler().postDelayed({
+                    binding.clKeyboard.visibility = View.GONE
+                }, 500)
 
                 if(score > highscore) {
                     highscore = score
@@ -158,5 +150,40 @@ class DrillStartActivity : AppCompatActivity() {
         this.binding.tvNum2.text = getString(R.string.number, num2)
 
         answer = currOperation!!.apply(num1.toLong(), num2.toLong())
+    }
+
+    override fun onClick(v: View?) {
+        val currAns = binding.tvAnswer.text.toString()
+        when(v) {
+            in buttonsNumber -> {
+                val btn = v as Button
+                if(btn == binding.btn0 && currAns.isEmpty()) return
+                val num = btn.text.toString()
+                binding.tvAnswer.text = getString(R.string.words, "$currAns$num")
+            }
+            binding.btnClear -> {
+                binding.tvAnswer.text = ""
+            }
+            binding.btnEquals -> {
+                val userAnswer = currAns.toLongOrNull()
+
+                if(userAnswer != null && userAnswer == answer) {
+                    score++
+                    this.binding.tvScore.text = getString(R.string.number, score)
+                }
+
+                this.binding.tvAnswer.text = ""
+                generateProblem()
+            }
+            binding.btnSign -> {
+                val num = currAns.toIntOrNull()
+                if(num != null) {
+                    binding.tvAnswer.text = "${num * -1}"
+                }
+            }
+            binding.btnBackspace -> {
+                if(currAns.isNotEmpty()) binding.tvAnswer.text = currAns.dropLast(1)
+            }
+        }
     }
 }

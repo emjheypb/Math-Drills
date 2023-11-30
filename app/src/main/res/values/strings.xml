@@ -24,6 +24,20 @@
     <string name="number">%1$d</string>
     <string name="words">%1$s</string>
     <string name="answer">Answer</string>
-    <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE:%4$d\nHIGH SCORE: %5$d</string>
+    <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d\nHIGH SCORE: %5$d</string>
     <string name="home_button">Home Button</string>
+    <string name="num_7">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
+    <string name="num_6">6</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_0">0</string>
+    <string name="ltr_c">C</string>
+    <string name="pos_neg">+ / -</string>
+    <string name="submit">✓</string>
+    <string name="backspace">⌫</string>
 </resources>
