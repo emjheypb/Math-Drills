@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="primary">#FF6750A4</color>
-    <color name="disabled">#FF625B71</color>
+    <color name="disabled">#B6ABCA</color>
+
+    <color name="green">#43A047</color>
 </resources>
