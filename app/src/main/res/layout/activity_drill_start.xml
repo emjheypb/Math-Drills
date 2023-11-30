@@ -107,8 +107,9 @@
             android:id="@+id/btn_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_7"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -117,8 +118,9 @@
             android:id="@+id/btn_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_8"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
             app:layout_constraintStart_toEndOf="@id/btn_1"
             app:layout_constraintTop_toTopOf="parent" />
@@ -127,8 +129,9 @@
             android:id="@+id/btn_9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_9"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
             app:layout_constraintStart_toEndOf="@+id/btn_8"
             app:layout_constraintTop_toTopOf="parent" />
@@ -137,8 +140,9 @@
             android:id="@+id/btn_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_4"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_7" />
@@ -147,8 +151,9 @@
             android:id="@+id/btn_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_5"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
             app:layout_constraintStart_toEndOf="@id/btn_1"
             app:layout_constraintTop_toBottomOf="@+id/btn_8" />
@@ -157,8 +162,9 @@
             android:id="@+id/btn_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_6"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
             app:layout_constraintStart_toEndOf="@+id/btn_5"
             app:layout_constraintTop_toBottomOf="@+id/btn_9" />
@@ -167,8 +173,9 @@
             android:id="@+id/btn_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_1"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_4" />
@@ -177,8 +184,9 @@
             android:id="@+id/btn_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_2"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
             app:layout_constraintStart_toEndOf="@id/btn_1"
             app:layout_constraintTop_toBottomOf="@+id/btn_5" />
@@ -187,30 +195,33 @@
             android:id="@+id/btn_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/num_3"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
             app:layout_constraintStart_toEndOf="@id/btn_2"
             app:layout_constraintTop_toBottomOf="@+id/btn_6" />
 
         <Button
-            android:id="@+id/btn_0"
+            android:id="@+id/btn_Sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/num_0"
-            app:layout_constraintEnd_toStartOf="@id/btn_Sign"
+            android:padding="24dp"
+            android:text="@string/pos_neg"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@id/btn_0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_1" />
 
         <Button
-            android:id="@+id/btn_Sign"
+            android:id="@+id/btn_0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="@string/pos_neg"
+            android:padding="24dp"
+            android:text="@string/num_0"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Clear"
-            app:layout_constraintStart_toEndOf="@id/btn_0"
+            app:layout_constraintStart_toEndOf="@id/btn_Sign"
             app:layout_constraintTop_toBottomOf="@id/btn_2" />
 
         <Button
@@ -218,10 +229,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="?attr/colorError"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/ltr_c"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
-            app:layout_constraintStart_toEndOf="@id/btn_Sign"
+            app:layout_constraintStart_toEndOf="@id/btn_0"
             app:layout_constraintTop_toBottomOf="@id/btn_1" />
 
         <Button
@@ -229,8 +241,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="?attr/colorError"
-            android:padding="16dp"
+            android:padding="24dp"
             android:text="@string/backspace"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/btn_Equals"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -241,6 +254,7 @@
             android:layout_height="0dp"
             android:backgroundTint="@color/green"
             android:text="@string/submit"
+            android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_Backspace" />
