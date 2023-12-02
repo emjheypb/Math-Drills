@@ -18,7 +18,7 @@
     <string name="lbl_easy">Easy</string>
     <string name="lbl_intermediate">Intermediate</string>
     <string name="lbl_hard">Hard</string>
-    <string name="lbl_whiz">Whiz</string>
+    <string name="lbl_whiz">Wiz</string>
 
     <string name="countdown_timer">%1$s : %2$s</string>
     <string name="number">%1$d</string>
