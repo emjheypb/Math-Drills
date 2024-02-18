@@ -42,10 +42,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         this.binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
 
+        // region load shared preferences
         this.sharedPreferences =
             getSharedPreferences(SharedPrefRef.SHAREDPREF.toString(), MODE_PRIVATE)
         this.prefEditor = this.sharedPreferences.edit()
+        // endregion
 
+        // region initialize screen controls
         timerButtons = listOf(this.binding.btn60, this.binding.btn180)
         operationButtons = listOf(
             this.binding.btnOpAddition,
@@ -74,6 +77,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         this.binding.btnStart.setOnClickListener(this)
         this.binding.tvVersion.text = getString(R.string.words, "v$version")
         this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, DEFAULT_ATTEMPTS)
+        // endregion
     }
 
     override fun onResume() {
@@ -87,6 +91,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             attempts[timex.index] = this.sharedPreferences.getInt(timex.spName.toString(), 0)
         }
 
+        // region check if tries need to be reset
         if (spDate != dateToday) {
             for(timex in TimerSeconds.entries) {
                 attempts[timex.index] = this.DEFAULT_ATTEMPTS
@@ -95,7 +100,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             this.prefEditor.putString(SharedPrefRef.SP_CURR_DATE.toString(), dateToday)
             this.prefEditor.apply()
         }
+        // endregion
 
+        // region set selected level options
         if (level != null) {
             currTimerSeconds = level.timerSeconds
             currOperation = level.operation
@@ -107,18 +114,20 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         } else {
             this.binding.btnStart.isEnabled = false
         }
-
-
+        // endregion
 
         super.onResume()
     }
 
     private fun btnIsSelected(buttons: List<Button>, currBtn: Button) {
+        // region set highlighted button based on last user selection
         for (btn in buttons) {
             if (btn == currBtn) btn.setBackgroundColor(getColor(R.color.primary))
             else btn.setBackgroundColor(getColor(R.color.disabled))
         }
+        // endregion
 
+        // region set defaults for selected level options
         this.binding.btnStart.isEnabled =
             (currTimerSeconds != null && currOperation != null && currDifficulty != null && attempts[currTimerSeconds!!.index] > 0)
         this.binding.tvHighscoreLbl.text = getString(R.string.lbl_high_score, 0)
@@ -137,6 +146,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 }
             }
         }
+        // endregion
     }
 
     override fun onClick(v: View?) {
