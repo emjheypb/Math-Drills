@@ -1,5 +1,6 @@
 package com.ubasangg.mathdrills
 
+import android.app.AlertDialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -84,9 +85,24 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         }
         // endregion
 
-        // region ending home button
+        // region home buttons
         this.binding.btnHome.setOnClickListener {
             finish()
+        }
+        this.binding.btnMenuHome.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Are you sure you want to quit?")
+                .setMessage("You will lose your attempt and score.")
+                .setPositiveButton("CANCEL") { dialog, which ->
+                    // Do something.
+                }
+                .setNegativeButton("QUIT") { dialog, which ->
+                    finish()
+                }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
         // endregion
 
@@ -121,6 +137,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 binding.clKeyboard.startAnimation(animationFadeOut)
                 Handler().postDelayed({
                     binding.clKeyboard.visibility = View.GONE
+                    binding.llMenu.visibility = View.GONE
                 }, 500)
                 // endregion
 
@@ -145,9 +162,9 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
                 binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), currDifficulty.toString(), score, highscore)
                 binding.tvResults.visibility = View.VISIBLE
-                binding.btnHome.visibility = View.VISIBLE
+                binding.llGameOverMenu.visibility = View.VISIBLE
                 binding.tvResults.startAnimation(animationFadeIn)
-                binding.btnHome.startAnimation(animationFadeIn)
+                binding.llGameOverMenu.startAnimation(animationFadeIn)
                 // endregion
                 // endregion
             }
