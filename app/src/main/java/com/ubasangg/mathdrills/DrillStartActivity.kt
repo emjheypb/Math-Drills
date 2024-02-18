@@ -200,10 +200,10 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 generateProblem()
             }
             binding.btnSign -> {
-                val num = currAns.toIntOrNull()
-                if(num != null) {
-                    binding.tvAnswer.text = "${num * -1}"
-                }
+                if(currAns.contains("-"))
+                    binding.tvAnswer.text = currAns.replace("-", "")
+                else
+                    binding.tvAnswer.text = "-$currAns"
             }
             binding.btnBackspace -> {
                 if(currAns.isNotEmpty()) binding.tvAnswer.text = currAns.dropLast(1)
