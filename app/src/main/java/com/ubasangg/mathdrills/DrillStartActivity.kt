@@ -43,13 +43,17 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         binding = ActivityDrillStartBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
 
+        // region load shared preferences
         this.sharedPreferences = getSharedPreferences(SharedPrefRef.SHAREDPREF.toString(), MODE_PRIVATE)
         this.prefEditor = this.sharedPreferences.edit()
 
         val levelSP = this.sharedPreferences.getString(SharedPrefRef.SP_LEVEL.toString(), "")
         val level = gson.fromJson(levelSP, Level::class.java)
+        // endregion
 
+        // region check if valid initial inputs
         if(level != null) {
+            // region set current game initial values
             currTimerSeconds = level.timerSeconds
             currOperation = level.operation
             currDifficulty = level.difficulty
@@ -58,6 +62,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             updateTimer(currTimerSeconds!!.seconds / 60, currTimerSeconds!!.seconds % 60)
             this.binding.tvOperation.text = currOperation!!.description
 
+            // region set high score display
             val highScoreDS = sharedPreferences.getString(SharedPrefRef.SP_HIGH_SCORES.toString(), "")
             val typeToken = object: TypeToken<List<HighScore>>() {}.type
             if (highScoreDS != "") {
@@ -69,17 +74,23 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                     }
                 }
             }
+            // endregion
+            // endregion
 
             generateProblem()
             startTimer()
         } else {
             finish()
         }
+        // endregion
 
+        // region ending home button
         this.binding.btnHome.setOnClickListener {
             finish()
         }
+        // endregion
 
+        // region custom keypad
         buttonsNumber = listOf(this.binding.btn0, this.binding.btn1, this.binding.btn2, this.binding.btn3, this.binding.btn4, this.binding.btn5, this.binding.btn6, this.binding.btn7, this.binding.btn8, this.binding.btn9, this.binding.btn0)
 
         for(btn in buttonsNumber) btn.setOnClickListener(this)
@@ -87,6 +98,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         this.binding.btnSign.setOnClickListener(this)
         this.binding.btnEquals.setOnClickListener(this)
         this.binding.btnBackspace.setOnClickListener(this)
+        // endregion
     }
 
     private fun startTimer() {
@@ -100,15 +112,19 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             }
 
             override fun onFinish() {
+                // region game over
                 for(btn in buttonsNumber) btn.isEnabled = false
                 binding.btnEquals.isEnabled = false
 
+                // region hide custom keypad
                 val animationFadeOut = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_out)
                 binding.clKeyboard.startAnimation(animationFadeOut)
                 Handler().postDelayed({
                     binding.clKeyboard.visibility = View.GONE
                 }, 500)
+                // endregion
 
+                // region set new high score for level
                 if(score > highscore) {
                     highscore = score
                     for(index in highScores.size - 1 downTo 0) {
@@ -123,13 +139,17 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                     prefEditor.putString(SharedPrefRef.SP_HIGH_SCORES.toString(), highScoresJSON)
                     prefEditor.apply()
                 }
+                // endregion
 
+                // region show game over screen
                 val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
                 binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), currDifficulty.toString(), score, highscore)
                 binding.tvResults.visibility = View.VISIBLE
                 binding.btnHome.visibility = View.VISIBLE
                 binding.tvResults.startAnimation(animationFadeIn)
                 binding.btnHome.startAnimation(animationFadeIn)
+                // endregion
+                // endregion
             }
         }
 
@@ -137,6 +157,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun updateTimer(minutes: Int, seconds: Int) {
+        // update timer display
         this.binding.tvTimer.text = getString(R.string.countdown_timer, minutes.toString().padStart(2, '0'), seconds.toString().padStart(2, '0'))
     }
 
@@ -153,13 +174,16 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        // region custom keypad clicks
         val currAns = binding.tvAnswer.text.toString()
         when(v) {
             in buttonsNumber -> {
                 val btn = v as Button
-                if(btn == binding.btn0 && currAns.isEmpty()) return
-                val num = btn.text.toString()
-                binding.tvAnswer.text = getString(R.string.words, "$currAns$num")
+                val num = "${btn.text}"
+                if (currAns == "0")
+                    binding.tvAnswer.text = getString(R.string.words, "$num")
+                else
+                    binding.tvAnswer.text = getString(R.string.words, "$currAns$num")
             }
             binding.btnClear -> {
                 binding.tvAnswer.text = ""
@@ -185,5 +209,6 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 if(currAns.isNotEmpty()) binding.tvAnswer.text = currAns.dropLast(1)
             }
         }
+        // endregion
     }
 }
