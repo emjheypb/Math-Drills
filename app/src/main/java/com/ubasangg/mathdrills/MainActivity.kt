@@ -172,7 +172,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             in difficultyButtons -> {
-                currDifficulty = Difficulty.valueOf(v.text.toString().uppercase())
+                if(v.text.toString() == getString(R.string.lbl_whiz)) {
+                    currDifficulty = Difficulty.WHIZ
+                } else {
+                    currDifficulty = Difficulty.valueOf(v.text.toString().uppercase())
+                }
                 btnIsSelected(difficultyButtons, v)
             }
 
