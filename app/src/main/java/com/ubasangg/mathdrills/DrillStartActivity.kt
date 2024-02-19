@@ -95,11 +95,14 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
             builder
                 .setTitle("Are you sure you want to quit?")
-                .setMessage("You will lose your attempt and score.")
+                .setMessage(
+                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: ${score}"
+                    else "You will lose your attempt and score.")
                 .setPositiveButton("CANCEL") { dialog, which ->
                     // Do something.
                 }
                 .setNegativeButton("QUIT") { dialog, which ->
+                    if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
                     finish()
                 }
 
@@ -173,22 +176,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 }, 200)
                 // endregion
 
-                // region set new high score for level
-                if(score > highscore) {
-                    highscore = score
-                    for(index in highScores.size - 1 downTo 0) {
-                        if(highScores[index].level.timerSeconds == currTimerSeconds && highScores[index].level.operation == currOperation && highScores[index].level.difficulty == currDifficulty) {
-                            highScores.removeAt(index)
-                            break
-                        }
-                    }
-                    val currLevel = Level(currTimerSeconds!!, currOperation!!, currDifficulty!!)
-                    highScores.add(HighScore(currLevel, highscore))
-                    val highScoresJSON = gson.toJson(highScores)
-                    prefEditor.putString(SharedPrefRef.SP_HIGH_SCORES.toString(), highScoresJSON)
-                    prefEditor.apply()
-                }
-                // endregion
+                setHighScore()
 
                 // region show game over screen
                 val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
@@ -207,7 +195,24 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun startGame() {
         generateProblem()
-        startTimer()
+        if(currTimerSeconds!! != TimerSeconds.CASUAL) startTimer()
+    }
+
+    private fun setHighScore() {
+        if(score > highscore) {
+            highscore = score
+            for(index in highScores.size - 1 downTo 0) {
+                if(highScores[index].level.timerSeconds == currTimerSeconds && highScores[index].level.operation == currOperation && highScores[index].level.difficulty == currDifficulty) {
+                    highScores.removeAt(index)
+                    break
+                }
+            }
+            val currLevel = Level(currTimerSeconds!!, currOperation!!, currDifficulty!!)
+            highScores.add(HighScore(currLevel, highscore))
+            val highScoresJSON = gson.toJson(highScores)
+            prefEditor.putString(SharedPrefRef.SP_HIGH_SCORES.toString(), highScoresJSON)
+            prefEditor.apply()
+        }
     }
 
     private fun updateTimer(minutes: Int, seconds: Int) {

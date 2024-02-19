@@ -44,13 +44,23 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_Version" />
 
     <Button
+        android:id="@+id/btn_Casual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/lbl_casual"
+        app:layout_constraintEnd_toStartOf="@id/btn_60"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer" />
+
+    <Button
         android:id="@+id/btn_60"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/lbl_timer_60"
         app:layout_constraintEnd_toStartOf="@id/btn_180"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_Casual"
         app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer" />
 
     <Button

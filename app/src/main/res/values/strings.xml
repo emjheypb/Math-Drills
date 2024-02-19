@@ -2,6 +2,7 @@
     <string name="app_name">Math Drills</string>
     <string name="app_name_upper">MATH DRILLS</string>
     <string name="lbl_timer">Timer</string>
+    <string name="lbl_casual">Casual</string>
     <string name="lbl_timer_60">60 Seconds</string>
     <string name="lbl_timer_180">180 Seconds</string>
     <string name="lbl_operation">Operation</string>
