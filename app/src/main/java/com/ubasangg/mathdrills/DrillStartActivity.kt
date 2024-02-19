@@ -1,6 +1,10 @@
 package com.ubasangg.mathdrills
 
+import android.app.AlertDialog
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -77,16 +81,59 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             // endregion
             // endregion
 
-            generateProblem()
-            startTimer()
+            // start game
+            startGame()
         } else {
             finish()
         }
         // endregion
 
-        // region ending home button
+        // region on home button clicks
         this.binding.btnHome.setOnClickListener {
             finish()
+        }
+        this.binding.btnMenuHome.setOnClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Are you sure you want to quit?")
+                .setMessage("You will lose your attempt and score.")
+                .setPositiveButton("CANCEL") { dialog, which ->
+                    // Do something.
+                }
+                .setNegativeButton("QUIT") { dialog, which ->
+                    finish()
+                }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+        // endregion
+
+        // region on try again click
+        this.binding.btnTryAgain.setOnClickListener {
+            // reset current score
+            score = 0
+            this.binding.tvScore.text = getString(R.string.number, score)
+
+            // -1 attempt
+            val attempts =
+                this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0)
+            this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
+            this.prefEditor.apply()
+
+            // hide results screen
+            binding.tvResults.visibility = View.GONE
+            binding.llGameOverMenu.visibility = View.GONE
+
+            // show keypad
+            binding.clKeyboard.visibility = View.VISIBLE
+            for(btn in buttonsNumber) btn.isEnabled = true
+            binding.btnEquals.isEnabled = true
+
+            // show home menu
+            binding.llMenu.visibility = View.VISIBLE
+
+            startGame()
         }
         // endregion
 
@@ -116,12 +163,15 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 for(btn in buttonsNumber) btn.isEnabled = false
                 binding.btnEquals.isEnabled = false
 
+                binding.tvAnswer.text = ""
+
                 // region hide custom keypad
                 val animationFadeOut = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_out)
                 binding.clKeyboard.startAnimation(animationFadeOut)
                 Handler().postDelayed({
                     binding.clKeyboard.visibility = View.GONE
-                }, 500)
+                    binding.llMenu.visibility = View.GONE
+                }, 200)
                 // endregion
 
                 // region set new high score for level
@@ -143,17 +193,22 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
                 // region show game over screen
                 val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
-                binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), currDifficulty.toString(), score, highscore)
+                binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), currDifficulty.toString(), score, highscore, sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0))
                 binding.tvResults.visibility = View.VISIBLE
-                binding.btnHome.visibility = View.VISIBLE
+                binding.llGameOverMenu.visibility = View.VISIBLE
                 binding.tvResults.startAnimation(animationFadeIn)
-                binding.btnHome.startAnimation(animationFadeIn)
+                binding.llGameOverMenu.startAnimation(animationFadeIn)
                 // endregion
                 // endregion
             }
         }
 
         timer.start()
+    }
+
+    private fun startGame() {
+        generateProblem()
+        startTimer()
     }
 
     private fun updateTimer(minutes: Int, seconds: Int) {
@@ -194,16 +249,22 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 if(userAnswer != null && userAnswer == answer) {
                     score++
                     this.binding.tvScore.text = getString(R.string.number, score)
+                } else {
+                    val mColors = arrayOf(ColorDrawable(getColor(R.color.red)), ColorDrawable(getColor(R.color.transparent)))
+                    val colorTransition = TransitionDrawable(mColors)
+                    colorTransition.isCrossFadeEnabled = true
+                    binding.tvAnswer.background = colorTransition
+                    colorTransition.startTransition(500)
                 }
 
                 this.binding.tvAnswer.text = ""
                 generateProblem()
             }
             binding.btnSign -> {
-                val num = currAns.toIntOrNull()
-                if(num != null) {
-                    binding.tvAnswer.text = "${num * -1}"
-                }
+                if(currAns.contains("-"))
+                    binding.tvAnswer.text = currAns.replace("-", "")
+                else
+                    binding.tvAnswer.text = "-$currAns"
             }
             binding.btnBackspace -> {
                 if(currAns.isNotEmpty()) binding.tvAnswer.text = currAns.dropLast(1)
