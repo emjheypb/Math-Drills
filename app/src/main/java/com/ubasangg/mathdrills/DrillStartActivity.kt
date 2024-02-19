@@ -193,7 +193,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
                 // region show game over screen
                 val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
-                binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), currDifficulty.toString(), score, highscore, sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0))
+                binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), getString(currDifficulty!!.label), score, highscore, sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0))
                 binding.tvResults.visibility = View.VISIBLE
                 binding.llGameOverMenu.visibility = View.VISIBLE
                 binding.tvResults.startAnimation(animationFadeIn)
@@ -219,6 +219,24 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private fun generateProblem() {
         val min = currDifficulty!!.min
         val max = currDifficulty!!.max
+        val minAnswer = currDifficulty!!.minAnswer
+        val maxAnswer = currDifficulty!!.maxAnswer
+
+        // easy
+        // subtraction, top number >= bottom number
+        // multiplication, no limit on answer range. Instead, limit top number to max 2, and limit bottom number to 1
+
+        // intermediate
+        // subtraction, bottom number can be greater than top number resulting to negative answer. No negative numbers on top and bottom numbers.
+        // multiplication, no answer range. Instead limit top number to max 2 digits and bottom number to max 2 digits
+        // multiplication, negative numbers are okay
+
+        // hard
+        // multiplication, no answer range. Instead limit top number to 3 digits and bottom number to 2 digits
+        // multiplication, no answer range. Instead limit top number to 3 digits only (100 - 999) and bottom number to max 3 digits.
+
+        // whiz
+        // multiplication, no answer range. Instead limit top number to 3 digits only (100 - 999) and bottom number to max 3 digits.
 
         val num1 = (min..max).random()
         this.binding.tvNum1.text = getString(R.string.number, num1)
