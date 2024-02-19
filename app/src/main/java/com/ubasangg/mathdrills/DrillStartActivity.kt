@@ -96,12 +96,12 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             builder
                 .setTitle("Are you sure you want to quit?")
                 .setMessage(
-                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: ${score}"
+                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: $score"
                     else "You will lose your attempt and score.")
-                .setPositiveButton("CANCEL") { dialog, which ->
+                .setPositiveButton("CANCEL") { _, _ ->
                     // Do something.
                 }
-                .setNegativeButton("QUIT") { dialog, which ->
+                .setNegativeButton("QUIT") { _, _ ->
                     if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
                     finish()
                 }
@@ -239,7 +239,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 val btn = v as Button
                 val num = "${btn.text}"
                 if (currAns == "0")
-                    binding.tvAnswer.text = getString(R.string.words, "$num")
+                    binding.tvAnswer.text = getString(R.string.words, num)
                 else
                     binding.tvAnswer.text = getString(R.string.words, "$currAns$num")
             }
@@ -266,8 +266,10 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             binding.btnSign -> {
                 if(currAns.contains("-"))
                     binding.tvAnswer.text = currAns.replace("-", "")
-                else
-                    binding.tvAnswer.text = "-$currAns"
+                else {
+                    val negative = "-$currAns"
+                    binding.tvAnswer.text = negative
+                }
             }
             binding.btnBackspace -> {
                 if(currAns.isNotEmpty()) binding.tvAnswer.text = currAns.dropLast(1)
