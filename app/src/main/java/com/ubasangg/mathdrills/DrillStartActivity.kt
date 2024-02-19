@@ -2,6 +2,9 @@ package com.ubasangg.mathdrills
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -246,6 +249,12 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 if(userAnswer != null && userAnswer == answer) {
                     score++
                     this.binding.tvScore.text = getString(R.string.number, score)
+                } else {
+                    val mColors = arrayOf(ColorDrawable(getColor(R.color.red)), ColorDrawable(getColor(R.color.transparent)))
+                    val colorTransition = TransitionDrawable(mColors)
+                    colorTransition.isCrossFadeEnabled = true
+                    binding.tvAnswer.background = colorTransition
+                    colorTransition.startTransition(500)
                 }
 
                 this.binding.tvAnswer.text = ""
