@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private var currTimerSeconds: TimerSeconds? = null
     private var currOperation: Operation? = null
     private var currDifficulty: Difficulty? = null
-    private var attempts = mutableListOf<Int>(0,0)
+    private var attempts = mutableListOf<Int>(0,0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // endregion
 
         // region initialize screen controls
-        timerButtons = listOf(this.binding.btn60, this.binding.btn180)
+        timerButtons = listOf(this.binding.btn60, this.binding.btn180, this.binding.btnCasual)
         operationButtons = listOf(
             this.binding.btnOpAddition,
             this.binding.btnOpSubtraction,
