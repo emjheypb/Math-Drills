@@ -28,6 +28,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var prefEditor: SharedPreferences.Editor
     private val gson = Gson()
+    private val defaultAttempts = 99
 
     private var currTimerSeconds: TimerSeconds? = null
     private var currOperation: Operation? = null
@@ -119,7 +120,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
             // -1 attempt
             val attempts =
-                this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0)
+                this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
             this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
             this.prefEditor.apply()
 

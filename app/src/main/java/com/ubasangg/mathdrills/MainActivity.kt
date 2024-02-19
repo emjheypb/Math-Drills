@@ -112,8 +112,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             btnIsSelected(timerButtons, timerButtons[currTimerSeconds!!.index])
             btnIsSelected(operationButtons, operationButtons[currOperation!!.index])
             btnIsSelected(difficultyButtons, difficultyButtons[currDifficulty!!.index])
-        } else {
-            this.binding.btnStart.isEnabled = false
         }
         // endregion
 
@@ -129,8 +127,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // endregion
 
         // region set defaults for selected level options
-        this.binding.btnStart.isEnabled =
-            (currTimerSeconds != null && currOperation != null && currDifficulty != null && attempts[currTimerSeconds!!.index] > 0)
         this.binding.tvHighscoreLbl.text = getString(R.string.lbl_high_score, 0)
         this.binding.tvHighscoreLbl.visibility = View.VISIBLE
 
@@ -146,6 +142,17 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                     break
                 }
             }
+        }
+        // endregion
+
+        // region set level shared preference
+        if(currTimerSeconds != null && currOperation != null && currDifficulty != null) {
+            val level =
+                gson.toJson(Level(currTimerSeconds!!, currOperation!!, currDifficulty!!))
+            this.prefEditor.putString(SharedPrefRef.SP_LEVEL.toString(), level)
+            this.prefEditor.apply()
+
+            this.binding.btnStart.isEnabled = attempts[currTimerSeconds!!.index] > 0
         }
         // endregion
     }
@@ -183,12 +190,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             this.binding.btnStart -> {
                 val attempts =
-                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0)
+                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
                 this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
-
-                val level =
-                    gson.toJson(Level(currTimerSeconds!!, currOperation!!, currDifficulty!!))
-                this.prefEditor.putString(SharedPrefRef.SP_LEVEL.toString(), level)
                 this.prefEditor.apply()
 
                 val intent = Intent(this@MainActivity, DrillStartActivity::class.java)
