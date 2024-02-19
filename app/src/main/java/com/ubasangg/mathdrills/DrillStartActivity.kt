@@ -35,7 +35,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private var currDifficulty: Difficulty? = null
 
     private var score = 0
-    private var answer:Long = 0
+    private var answer: Int = 0
     private val highScores = mutableListOf<HighScore>()
     private var highscore = 0
 
@@ -217,33 +217,14 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun generateProblem() {
-        val min = currDifficulty!!.min
-        val max = currDifficulty!!.max
-        val minAnswer = currDifficulty!!.minAnswer
-        val maxAnswer = currDifficulty!!.maxAnswer
+        val difficulty = currDifficulty!!
+        val operation = currOperation!!
 
-        // easy
-        // subtraction, top number >= bottom number
-        // multiplication, no limit on answer range. Instead, limit top number to max 2, and limit bottom number to 1
+        val problem = operation.generateProblem(difficulty)
+        answer = problem.answer
 
-        // intermediate
-        // subtraction, bottom number can be greater than top number resulting to negative answer. No negative numbers on top and bottom numbers.
-        // multiplication, no answer range. Instead limit top number to max 2 digits and bottom number to max 2 digits
-        // multiplication, negative numbers are okay
-
-        // hard
-        // multiplication, no answer range. Instead limit top number to 3 digits and bottom number to 2 digits
-        // multiplication, no answer range. Instead limit top number to 3 digits only (100 - 999) and bottom number to max 3 digits.
-
-        // whiz
-        // multiplication, no answer range. Instead limit top number to 3 digits only (100 - 999) and bottom number to max 3 digits.
-
-        val num1 = (min..max).random()
-        this.binding.tvNum1.text = getString(R.string.number, num1)
-        val num2 = if(currOperation!! == Operation.MULTIPLICATION || currOperation!! == Operation.DIVISION) (min / 10..max / 10).random() else (min..max).random()
-        this.binding.tvNum2.text = getString(R.string.number, num2)
-
-        answer = currOperation!!.apply(num1.toLong(), num2.toLong())
+        this.binding.tvNum1.text = getString(R.string.number, problem.num1)
+        this.binding.tvNum2.text = getString(R.string.number, problem.num2)
     }
 
     override fun onClick(v: View?) {
@@ -262,7 +243,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 binding.tvAnswer.text = ""
             }
             binding.btnEquals -> {
-                val userAnswer = currAns.toLongOrNull()
+                val userAnswer = currAns.toIntOrNull()
 
                 if(userAnswer != null && userAnswer == answer) {
                     score++
