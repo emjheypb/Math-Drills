@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var operationButtons: List<Button>
     private lateinit var difficultyButtons: List<Button>
 
-    private val DEFAULT_ATTEMPTS = 99
+    private val defaultAttempts = 99
 
     private var currTimerSeconds: TimerSeconds? = null
     private var currOperation: Operation? = null
     private var currDifficulty: Difficulty? = null
-    private var attempts = mutableListOf<Int>(0,0,0)
+    private var attempts = mutableListOf(0,0,0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         this.binding.btnStart.setOnClickListener(this)
         this.binding.tvVersion.text = getString(R.string.words, "v$version")
-        this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, DEFAULT_ATTEMPTS)
+        this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, defaultAttempts)
         // endregion
     }
 
@@ -95,8 +95,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         // region check if tries need to be reset
         if (spDate != dateToday) {
             for(timex in TimerSeconds.entries) {
-                attempts[timex.index] = this.DEFAULT_ATTEMPTS
-                this.prefEditor.putInt(timex.spName.toString(), DEFAULT_ATTEMPTS)
+                attempts[timex.index] = this.defaultAttempts
+                this.prefEditor.putInt(timex.spName.toString(), defaultAttempts)
             }
             this.prefEditor.putString(SharedPrefRef.SP_CURR_DATE.toString(), dateToday)
             this.prefEditor.apply()
@@ -173,10 +173,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             in difficultyButtons -> {
-                if(v.text.toString() == getString(R.string.lbl_whiz)) {
-                    currDifficulty = Difficulty.WHIZ
+                currDifficulty = if(v.text.toString() == getString(R.string.lbl_whiz)) {
+                    Difficulty.WHIZ
                 } else {
-                    currDifficulty = Difficulty.valueOf(v.text.toString().uppercase())
+                    Difficulty.valueOf(v.text.toString().uppercase())
                 }
                 btnIsSelected(difficultyButtons, v)
             }
