@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         val dateToday = LocalDate.now().toString()
 
         for(timex in TimerSeconds.entries) {
-            attempts[timex.index] = this.sharedPreferences.getInt(timex.spName.toString(), 0)
+            attempts[timex.index] = this.sharedPreferences.getInt(timex.spName.toString(), defaultAttempts)
         }
 
         // region check if tries need to be reset
