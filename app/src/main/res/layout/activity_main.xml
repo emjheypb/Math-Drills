@@ -102,7 +102,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/sym_multiplication"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/btn_op_division"
@@ -154,44 +153,56 @@
         app:layout_constraintTop_toBottomOf="@id/btn_op_all" />
 
     <Button
+        android:id="@+id/btn_difficulty_beginner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="@string/lbl_beginner"
+        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_easy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty" />
+
+    <Button
         android:id="@+id/btn_difficulty_easy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
         android:text="@string/lbl_easy"
-        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_intermediate"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_difficulty_beginner"
         app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty" />
 
     <Button
         android:id="@+id/btn_difficulty_intermediate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/lbl_intermediate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_difficulty_easy"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty" />
+        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_hard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_beginner" />
 
     <Button
         android:id="@+id/btn_difficulty_hard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="@string/lbl_hard"
-        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_whiz"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_difficulty_intermediate"
         app:layout_constraintTop_toBottomOf="@id/btn_difficulty_easy" />
 
     <Button
         android:id="@+id/btn_difficulty_whiz"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/lbl_whiz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_difficulty_hard"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_easy" />
+        app:layout_constraintEnd_toEndOf="@id/gl_75"
+        app:layout_constraintStart_toStartOf="@id/gl_25"
+        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_hard"
+        app:layout_constrainedWidth="true"/>
 
     <TextView
         android:id="@+id/tv_highscore_lbl"
@@ -205,7 +216,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_hard" />
+        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_whiz" />
 
     <TextView
         android:id="@+id/tv_attempts_lbl"
@@ -230,5 +241,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25"
+        android:id="@+id/gl_25"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75"
+        android:id="@+id/gl_75"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

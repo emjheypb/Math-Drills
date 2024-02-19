@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             this.binding.btnDifficultyEasy,
             this.binding.btnDifficultyIntermediate,
             this.binding.btnDifficultyHard,
-            this.binding.btnDifficultyWhiz
+            this.binding.btnDifficultyWhiz,
+            this.binding.btnDifficultyBeginner
         )
 
         val buttons = mutableListOf<Button>()

@@ -2,7 +2,6 @@ package com.ubasangg.mathdrills
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle

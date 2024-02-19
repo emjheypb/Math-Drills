@@ -15,6 +15,7 @@
     <string name="sym_division">÷</string>
     <string name="lbl_random_upper">RANDOM</string>
     <string name="lbl_all_upper">ALL</string>
+    <string name="lbl_beginner">Beginner</string>
     <string name="lbl_easy">Easy</string>
     <string name="lbl_intermediate">Intermediate</string>
     <string name="lbl_hard">Hard</string>
