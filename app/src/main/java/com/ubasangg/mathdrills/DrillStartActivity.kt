@@ -7,6 +7,7 @@ import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.animation.AnimationUtils
@@ -90,25 +91,10 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
         // region on home button clicks
         this.binding.btnHome.setOnClickListener {
-            finish()
+            backToHome()
         }
         this.binding.btnMenuHome.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder
-                .setTitle("Are you sure you want to quit?")
-                .setMessage(
-                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: $score"
-                    else "You will lose your attempt and score.")
-                .setPositiveButton("CANCEL") { _, _ ->
-                    // Do something.
-                }
-                .setNegativeButton("QUIT") { _, _ ->
-                    if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
-                    finish()
-                }
-
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+            backToHome()
         }
         // endregion
 
@@ -149,6 +135,37 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         this.binding.btnEquals.setOnClickListener(this)
         this.binding.btnBackspace.setOnClickListener(this)
         // endregion
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            backToHome()
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun backToHome() {
+        if(this.binding.tvResults.visibility == View.VISIBLE) finish()
+        else {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Are you sure you want to quit?")
+                .setMessage(
+                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: $score"
+                    else "You will lose your attempt and score.")
+                .setPositiveButton("CANCEL") { _, _ ->
+                    // Do something.
+                }
+                .setNegativeButton("QUIT") { _, _ ->
+                    if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
+                    finish()
+                }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
     }
 
     private fun startTimer() {
