@@ -28,6 +28,7 @@
     <string name="answer">Answer</string>
     <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d\nHIGH SCORE: %5$d\n\nAttempts Remaining: %6$d</string>
     <string name="home_button">Home Button</string>
+    <string name="quit_button">Quit Button</string>
     <string name="try_again">Try Again</string>
     <string name="num_7">7</string>
     <string name="num_8">8</string>
@@ -40,7 +41,7 @@
     <string name="num_3">3</string>
     <string name="num_0">0</string>
     <string name="ltr_c">C</string>
-    <string name="pos_neg">+ / -</string>
+    <string name="pos_neg">+/-</string>
     <string name="submit">✓</string>
     <string name="backspace">⌫</string>
 </resources>

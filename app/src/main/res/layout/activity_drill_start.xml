@@ -15,11 +15,11 @@
         android:gravity="end">
         <ImageButton
             android:id="@+id/btn_Menu_Home"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@null"
-            android:contentDescription="@string/home_button"
-            android:src="@drawable/round_home_24"
+            android:contentDescription="@string/quit_button"
+            android:src="@drawable/baseline_close_24"
             app:tint="@color/primary" />
     </LinearLayout>
 
@@ -121,9 +121,8 @@
 
         <Button
             android:id="@+id/btn_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_7"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_8"
@@ -132,9 +131,8 @@
 
         <Button
             android:id="@+id/btn_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_8"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
@@ -143,9 +141,8 @@
 
         <Button
             android:id="@+id/btn_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_9"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
@@ -154,9 +151,8 @@
 
         <Button
             android:id="@+id/btn_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_4"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_5"
@@ -165,9 +161,8 @@
 
         <Button
             android:id="@+id/btn_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_5"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
@@ -176,9 +171,8 @@
 
         <Button
             android:id="@+id/btn_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_6"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
@@ -187,9 +181,8 @@
 
         <Button
             android:id="@+id/btn_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_1"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_2"
@@ -198,9 +191,8 @@
 
         <Button
             android:id="@+id/btn_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_2"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_3"
@@ -209,9 +201,8 @@
 
         <Button
             android:id="@+id/btn_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_3"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
@@ -220,9 +211,8 @@
 
         <Button
             android:id="@+id/btn_Sign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/pos_neg"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_0"
@@ -231,9 +221,8 @@
 
         <Button
             android:id="@+id/btn_0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="24dp"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:text="@string/num_0"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Clear"
@@ -242,10 +231,9 @@
 
         <Button
             android:id="@+id/btn_Clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:backgroundTint="?attr/colorError"
-            android:padding="24dp"
             android:text="@string/ltr_c"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@id/btn_Equals"
@@ -254,10 +242,9 @@
 
         <Button
             android:id="@+id/btn_Backspace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/calculator_buttons"
+            android:layout_height="@dimen/calculator_buttons"
             android:backgroundTint="?attr/colorError"
-            android:padding="24dp"
             android:text="@string/backspace"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/btn_Equals"
@@ -266,7 +253,7 @@
 
         <Button
             android:id="@+id/btn_Equals"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/calculator_buttons"
             android:layout_height="0dp"
             android:backgroundTint="@color/green"
             android:text="@string/submit"
@@ -302,7 +289,7 @@
             android:contentDescription="@string/try_again"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
-            android:drawableRight="@drawable/ic_action_name"/>
+            android:drawableEnd="@drawable/ic_action_name"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
