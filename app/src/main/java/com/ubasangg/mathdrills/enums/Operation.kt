@@ -19,9 +19,12 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             // intermediate - answer 0 to 1,000
             // hard - answer -10,000 to 10,000
             // math whiz - answer -100,000 to 100,000
-            val answer = (min..max).random()
+            val answer =
+                if (difficulty == Difficulty.BEGINNER) (min .. max * 2).random()
+                else (min..max).random()
             val num1 =
-                if(min == 0) (min..answer).random()
+                if(difficulty == Difficulty.BEGINNER && answer > 10) (answer - max..max).random()
+                else if(min == 0) (min..answer).random()
                 else
                     if (answer < 0) (min..max + answer).random()
                     else (answer..max).random()
@@ -36,7 +39,7 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             val max = difficulty.asMax
 
             // beginner
-            // max top number = 10, max bottom number = 10
+            // max top number = 20, max bottom number = 10
             // no negative
             // minuend >= subtrahend
 
@@ -53,6 +56,7 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             val answer = if(difficulty == Difficulty.INTERMEDIATE) (max * -1..max).random() else (min..max).random()
             val num1 =
                 if (answer < 0) (min..max + answer).random()
+                else if (difficulty == Difficulty.BEGINNER) (answer..max + answer).random()
                 else (answer..max).random()
             val num2 = num1 - answer
             return Problem(num1, num2, answer)
