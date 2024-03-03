@@ -267,7 +267,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun updateCountdown(seconds: Int) {
         // update curtain countdown display
-        this.binding.tvCountdown.text = getString(R.string.countdown, seconds.toString())
+        this.binding.tvCountdown.text = if(seconds != 0) getString(R.string.countdown, seconds.toString()) else getString(R.string.lbl_start)
     }
 
     private fun generateProblem() {
