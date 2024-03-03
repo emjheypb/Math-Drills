@@ -6,6 +6,7 @@
     <string name="lbl_timer_60">60 Seconds</string>
     <string name="lbl_timer_180">180 Seconds</string>
     <string name="lbl_operation">Operation</string>
+    <string name="lbl_play">PLAY</string>
     <string name="lbl_start">START</string>
     <string name="lbl_difficulty">Difficulty</string>
     <string name="lbl_high_score">High Score: %1$d</string>
@@ -21,6 +22,8 @@
     <string name="lbl_intermediate">Intermediate</string>
     <string name="lbl_hard">Hard</string>
     <string name="lbl_whiz">Math Whiz</string>
+
+    <string name="countdown">%1$s</string>
 
     <string name="countdown_timer">%1$s : %2$s</string>
     <string name="number">%1$d</string>

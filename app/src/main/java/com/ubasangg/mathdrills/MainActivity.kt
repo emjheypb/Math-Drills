@@ -189,10 +189,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             }
 
             this.binding.btnStart -> {
-                val attempts =
-                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
-                this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
-                this.prefEditor.apply()
+                // -1 attempt
+//                val attempts =
+//                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
+//                this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
+//                this.prefEditor.apply()
 
                 val intent = Intent(this@MainActivity, DrillStartActivity::class.java)
                 startActivity(intent)

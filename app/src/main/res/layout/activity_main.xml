@@ -18,7 +18,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <TextView
         android:id="@+id/tv_Version"
@@ -30,7 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:fontFamily="@font/anonymouspro_regular" />
 
     <TextView
         android:id="@+id/tv_lbl_timer"
@@ -41,7 +43,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Version" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_Version"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <Button
         android:id="@+id/btn_Casual"
@@ -82,7 +85,8 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_60" />
+        app:layout_constraintTop_toBottomOf="@id/btn_60"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <Button
         android:id="@+id/btn_op_addition"
@@ -160,7 +164,8 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_op_all" />
+        app:layout_constraintTop_toBottomOf="@id/btn_op_all"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <Button
         android:id="@+id/btn_difficulty_beginner"
@@ -226,7 +231,8 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_whiz" />
+        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_whiz"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <TextView
         android:id="@+id/tv_attempts_lbl"
@@ -239,18 +245,20 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:enabled="false"
-        android:text="@string/lbl_start"
+        android:text="@string/lbl_play"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/blackopsone_regular" />
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="wrap_content"

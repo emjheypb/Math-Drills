@@ -4,292 +4,340 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".DrillStartActivity">
 
-    <LinearLayout
-        android:id="@+id/ll_Menu"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="end">
-        <ImageButton
-            android:id="@+id/btn_Menu_Home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:contentDescription="@string/quit_button"
-            android:src="@drawable/baseline_close_24"
-            app:tint="@color/primary" />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/ll_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ll_Menu">
-
-        <TextView
-            android:id="@+id/tv_Timer"
+        <LinearLayout
+            android:id="@+id/ll_Menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_Quit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="@string/quit_button"
+                android:src="@drawable/baseline_close_24"
+                app:tint="@color/primary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ll_Menu">
+
+            <TextView
+                android:id="@+id/tv_Timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/countdown_timer"
+                android:textSize="32sp"
+                android:fontFamily="@font/anonymouspro_regular" />
+
+            <TextView
+                android:id="@+id/tv_Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/number"
+                android:textAlignment="viewEnd"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/anonymouspro_regular"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_Num1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_weight="1"
-            android:text="@string/countdown_timer"
-            android:textSize="32sp" />
+            android:text="@string/number"
+            android:textAlignment="viewEnd"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_Operation"
+            app:layout_constraintTop_toBottomOf="@id/ll_header"
+            android:fontFamily="@font/blackopsone_regular" />
 
         <TextView
-            android:id="@+id/tv_Score"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_Num2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/number"
             android:textAlignment="viewEnd"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_Num1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_weight="1"
-        android:text="@string/number"
-        android:textAlignment="viewEnd"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_Operation"
-        app:layout_constraintTop_toBottomOf="@id/ll_header" />
-
-    <TextView
-        android:id="@+id/tv_Num2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/number"
-        android:textAlignment="viewEnd"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_Operation"
-        app:layout_constraintTop_toBottomOf="@id/tv_Num1" />
-
-    <TextView
-        android:id="@+id/tv_Operation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/words"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_Num1" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tv_Operation" />
-
-    <TextView
-        android:id="@+id/tv_Answer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/answer"
-        android:textAlignment="viewEnd"
-        android:textSize="40sp"
-        app:layout_constraintTop_toBottomOf="@id/divider" />
-
-    <TextView
-        android:id="@+id/tv_Results"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/results"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/tv_Answer" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_Keyboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/btn_7"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_7"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_8"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_8"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_3"
-            app:layout_constraintStart_toEndOf="@id/btn_1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_9"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_9"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_Equals"
-            app:layout_constraintStart_toEndOf="@+id/btn_8"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_4"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_4"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_7" />
-
-        <Button
-            android:id="@+id/btn_5"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_5"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_3"
-            app:layout_constraintStart_toEndOf="@id/btn_1"
-            app:layout_constraintTop_toBottomOf="@+id/btn_8" />
-
-        <Button
-            android:id="@+id/btn_6"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_6"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_Equals"
-            app:layout_constraintStart_toEndOf="@+id/btn_5"
-            app:layout_constraintTop_toBottomOf="@+id/btn_9" />
-
-        <Button
-            android:id="@+id/btn_1"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_1"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_4" />
-
-        <Button
-            android:id="@+id/btn_2"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_2"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_3"
-            app:layout_constraintStart_toEndOf="@id/btn_1"
-            app:layout_constraintTop_toBottomOf="@+id/btn_5" />
-
-        <Button
-            android:id="@+id/btn_3"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_3"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_Equals"
-            app:layout_constraintStart_toEndOf="@id/btn_2"
-            app:layout_constraintTop_toBottomOf="@+id/btn_6" />
-
-        <Button
-            android:id="@+id/btn_Sign"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/pos_neg"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_1" />
-
-        <Button
-            android:id="@+id/btn_0"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:text="@string/num_0"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_Clear"
-            app:layout_constraintStart_toEndOf="@id/btn_Sign"
-            app:layout_constraintTop_toBottomOf="@id/btn_2" />
-
-        <Button
-            android:id="@+id/btn_Clear"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:backgroundTint="?attr/colorError"
-            android:text="@string/ltr_c"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@id/btn_Equals"
-            app:layout_constraintStart_toEndOf="@id/btn_0"
-            app:layout_constraintTop_toBottomOf="@id/btn_1" />
-
-        <Button
-            android:id="@+id/btn_Backspace"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="@dimen/calculator_buttons"
-            android:backgroundTint="?attr/colorError"
-            android:text="@string/backspace"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_Equals"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/tv_Operation"
+            app:layout_constraintTop_toBottomOf="@id/tv_Num1"
+            android:fontFamily="@font/blackopsone_regular" />
 
-        <Button
-            android:id="@+id/btn_Equals"
-            android:layout_width="@dimen/calculator_buttons"
-            android:layout_height="0dp"
-            android:backgroundTint="@color/green"
-            android:text="@string/submit"
-            android:textSize="32sp"
+        <TextView
+            android:id="@+id/tv_Operation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/words"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Num1"
+            android:fontFamily="@font/blackopsone_regular" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_Operation" />
+
+        <TextView
+            android:id="@+id/tv_Answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/answer"
+            android:textAlignment="viewEnd"
+            android:textSize="40sp"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:fontFamily="@font/blackopsone_regular"/>
+
+        <TextView
+            android:id="@+id/tv_Results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/results"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tv_Answer" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_Keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_Backspace" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btn_7"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_7"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/btn_8"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_8"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_3"
+                app:layout_constraintStart_toEndOf="@id/btn_1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_9"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_9"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintStart_toEndOf="@+id/btn_8"
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_4"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_4"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_7"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_5"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_5"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_3"
+                app:layout_constraintStart_toEndOf="@id/btn_1"
+                app:layout_constraintTop_toBottomOf="@+id/btn_8"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_6"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_6"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintStart_toEndOf="@+id/btn_5"
+                app:layout_constraintTop_toBottomOf="@+id/btn_9"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_1"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_4"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_3"
+                app:layout_constraintStart_toEndOf="@id/btn_1"
+                app:layout_constraintTop_toBottomOf="@+id/btn_5"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_3"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintStart_toEndOf="@id/btn_2"
+                app:layout_constraintTop_toBottomOf="@+id/btn_6"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_Sign"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/pos_neg"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_1"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_0"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:text="@string/num_0"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_Clear"
+                app:layout_constraintStart_toEndOf="@id/btn_Sign"
+                app:layout_constraintTop_toBottomOf="@id/btn_2"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_Clear"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:backgroundTint="?attr/colorError"
+                android:text="@string/ltr_c"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintStart_toEndOf="@id/btn_0"
+                app:layout_constraintTop_toBottomOf="@id/btn_1"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_Backspace"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="@dimen/calculator_buttons"
+                android:backgroundTint="?attr/colorError"
+                android:text="@string/backspace"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/btn_Equals"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:enabled="false" />
+
+            <Button
+                android:id="@+id/btn_Equals"
+                android:layout_width="@dimen/calculator_buttons"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/green"
+                android:text="@string/submit"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_Backspace"
+                android:enabled="false" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_Game_Over_Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="@string/home_button"
+                android:src="@drawable/round_home_48"
+                app:tint="@color/primary" />
+
+            <Button
+                android:id="@+id/btn_Try_Again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary"
+                android:contentDescription="@string/try_again"
+                android:drawableEnd="@drawable/ic_action_name"
+                android:text="@string/try_again"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_Game_Over_Menu"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        android:gravity="center"
-        android:orientation="vertical">
-        <ImageButton
-            android:id="@+id/btn_Home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:contentDescription="@string/home_button"
-            android:src="@drawable/round_home_48"
-            app:tint="@color/primary" />
-        <Button
-            android:id="@+id/btn_Try_Again"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/try_again"
-            android:contentDescription="@string/try_again"
-            android:backgroundTint="@color/primary"
+        android:layout_height="match_parent"
+        android:id="@+id/cl_Curtain">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_see_through" />
+        <TextView
+            android:id="@+id/tv_Countdown"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/countdown"
+            android:gravity="center"
+            android:textSize="80sp"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:drawableEnd="@drawable/ic_action_name"/>
-    </LinearLayout>
+            android:fontFamily="@font/blackopsone_regular"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
