@@ -30,8 +30,8 @@
     <string name="words">%1$s</string>
     <string name="answer">Answer</string>
     <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d\nHIGH SCORE: %5$d\n\nAttempts Remaining: %6$d</string>
-    <string name="home_button">Home Button</string>
-    <string name="quit_button">Quit Button</string>
+    <string name="home_button">Home</string>
+    <string name="quit_button">Quit</string>
     <string name="try_again">Try Again</string>
     <string name="num_7">7</string>
     <string name="num_8">8</string>
