@@ -284,7 +284,6 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        // region custom keypad clicks
         val currAns = binding.tvAnswer.text.toString()
         when(v) {
             in buttonsNumber -> {
@@ -292,6 +291,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 val num = "${btn.text}"
                 if (currAns == "0")
                     binding.tvAnswer.text = getString(R.string.words, num)
+                else if (currAns == "-0")
+                    binding.tvAnswer.text = getString(R.string.words, "-${num}")
                 else
                     binding.tvAnswer.text = getString(R.string.words, "$currAns$num")
             }
@@ -333,6 +334,5 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
                 backToHome()
             }
         }
-        // endregion
     }
 }
