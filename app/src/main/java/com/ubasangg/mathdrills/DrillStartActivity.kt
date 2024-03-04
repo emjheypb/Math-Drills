@@ -41,6 +41,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private var answer: Int = 0
     private val highScores = mutableListOf<HighScore>()
     private var highscore = 0
+    private var gameover = false
 
     private lateinit var buttonsNumber: List<Button>
 
@@ -115,7 +116,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun backToHome() {
-        if(this.binding.tvResults.visibility == View.VISIBLE && score > 0) finish()
+        if(gameover) finish()
         else {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
             builder
@@ -157,7 +158,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun gameOver() {
-        // region game over
+        gameover = true
         for(btn in buttonsNumber) btn.isEnabled = false
         binding.btnEquals.isEnabled = false
         binding.btnBackspace.isEnabled = false
@@ -185,7 +186,6 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         binding.tvResults.startAnimation(animationFadeIn)
         binding.llGameOverMenu.startAnimation(animationFadeIn)
         // endregion
-        // endregion
     }
 
     private fun startTimer() {
@@ -207,6 +207,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     }
 
     private fun startCountdown() {
+        gameover = false
+
         // -1 attempt
         val attempts =
             this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)

@@ -12,8 +12,8 @@ android {
         applicationId = "com.ubasangg.mathdrills"
         minSdk = 26
         targetSdk = 34
-        versionCode = 12
-        versionName = "1.11"
+        versionCode = 13
+        versionName = "1.12"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,4 +55,6 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 //    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.25")
 }
