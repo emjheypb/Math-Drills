@@ -10,7 +10,7 @@
     <string name="lbl_operation">Operation</string>
     <string name="lbl_difficulty">Difficulty</string>
     <string name="lbl_high_score">High Score</string>
-    <string name="lbl_attempts_remaining">Attempts Remaining</string>
+    <string name="lbl_attempts_remaining">Attempts Left</string>
 
     <string name="lbl_addition">Addition</string>
     <string name="lbl_subtraction">Subtraction</string>
@@ -29,12 +29,13 @@
     <string name="countdown_timer">%1$s : %2$s</string>
     <string name="number">%1$d</string>
     <string name="words">%1$s</string>
-    <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d\nHIGH SCORE: %5$d\n\nAttempts Remaining: %6$d</string>
+    <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d</string>
 
     <string name="home_button">Home</string>
     <string name="quit_button">Quit</string>
     <string name="try_again">Try Again</string>
     <string name="answer">Answer</string>
+    <string name="time_up">Time\'s up!</string>
 
     <string name="num_7">7</string>
     <string name="num_8">8</string>
@@ -46,8 +47,8 @@
     <string name="num_2">2</string>
     <string name="num_3">3</string>
     <string name="num_0">0</string>
-    <string name="ltr_c">C</string>
+    <string name="ltr_c">Clear</string>
     <string name="pos_neg">+/-</string>
-    <string name="submit">✓</string>
-    <string name="backspace">⌫</string>
+    <string name="submit">Submit</string>
+    <string name="backspace">Backspace</string>
 </resources>

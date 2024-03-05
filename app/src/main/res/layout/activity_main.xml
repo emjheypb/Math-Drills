@@ -57,8 +57,8 @@
 
         <ImageButton
             android:id="@+id/btn_Casual"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_casual"
             android:contentDescription="@string/lbl_casual" />
 
@@ -68,8 +68,8 @@
 
         <ImageButton
             android:id="@+id/btn_60"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_60_seconds"
             android:contentDescription="@string/lbl_timer_60" />
 
@@ -79,8 +79,8 @@
 
         <ImageButton
             android:id="@+id/btn_180"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_180_seconds"
             android:contentDescription="@string/lbl_timer_180" />
     </LinearLayout>
@@ -108,8 +108,8 @@
 
         <ImageButton
             android:id="@+id/btn_op_addition"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_addition"
             android:contentDescription="@string/lbl_addition"
             android:textSize="16sp" />
@@ -120,8 +120,8 @@
 
         <ImageButton
             android:id="@+id/btn_op_subtraction"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_subtraction"
             android:contentDescription="@string/lbl_subtraction"
             android:textSize="16sp" />
@@ -132,8 +132,8 @@
 
         <ImageButton
             android:id="@+id/btn_op_multiplication"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/regular_buttons"
+            android:layout_height="@dimen/regular_buttons"
             android:background="@drawable/btn_multiplication"
             android:contentDescription="@string/lbl_multiplication"
             android:textSize="16sp" />
@@ -155,33 +155,33 @@
         android:id="@+id/ll_Difficulty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty">
 
         <ImageButton
             android:id="@+id/btn_prev_difficulty"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/btn_left_arrow"/>
+            android:layout_width="@dimen/small_buttons"
+            android:layout_height="@dimen/small_buttons"
+            android:background="@drawable/btn_left_arrow" />
 
         <TextView
             android:id="@+id/tv_Difficulty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:fontFamily="@font/blackopsone_regular"
             android:gravity="center"
             android:text="@string/words"
             android:textAlignment="center"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btn_next_difficulty"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/small_buttons"
+            android:layout_height="@dimen/small_buttons"
             android:background="@drawable/btn_right_arrow"
             android:contentDescription="TODO" />
     </LinearLayout>
@@ -194,34 +194,60 @@
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start">
 
-        <TextView
-            android:id="@+id/tv_High_Score_Lbl"
-            android:layout_width="108dp"
-            android:layout_height="88dp"
-            android:background="@drawable/circle"
-            android:fontFamily="@font/anonymouspro_regular"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/number"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_Attempts_Lbl"
-            android:layout_width="108dp"
-            android:layout_height="88dp"
-            android:background="@drawable/heart"
-            android:fontFamily="@font/anonymouspro_regular"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/lbl_high_score" />
+
+            <TextView
+                android:id="@+id/tv_High_Score_Lbl"
+                android:layout_width="@dimen/circle_heart_w"
+                android:layout_height="@dimen/circle_heart_h"
+                android:background="@drawable/circle"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:gravity="center"
+                android:text="@string/number"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/number"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/lbl_attempts_remaining" />
+
+            <TextView
+                android:id="@+id/tv_Attempts_Lbl"
+                android:layout_width="@dimen/circle_heart_w"
+                android:layout_height="@dimen/circle_heart_h"
+                android:background="@drawable/heart"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:gravity="center"
+                android:text="@string/number"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/regular_buttons"
         android:background="@drawable/btn_play"
         android:contentDescription="@string/lbl_play"
         app:layout_constraintBottom_toBottomOf="parent"

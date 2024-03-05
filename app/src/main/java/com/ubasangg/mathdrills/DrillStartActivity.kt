@@ -10,9 +10,8 @@ import android.os.Handler
 import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnClickListener
-import android.view.View.VISIBLE
 import android.view.animation.AnimationUtils
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -43,7 +42,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private var highscore = 0
     private var gameover = false
 
-    private lateinit var buttonsNumber: List<Button>
+    private lateinit var numberButtons: List<ImageButton>
+    private val numpadButtons = mutableListOf<ImageButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,16 +93,20 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         // endregion
 
         // region setOnClickListeners
-        buttonsNumber = listOf(this.binding.btn0, this.binding.btn1, this.binding.btn2, this.binding.btn3, this.binding.btn4, this.binding.btn5, this.binding.btn6, this.binding.btn7, this.binding.btn8, this.binding.btn9, this.binding.btn0)
+        numberButtons = listOf(this.binding.btn0, this.binding.btn1, this.binding.btn2, this.binding.btn3, this.binding.btn4, this.binding.btn5, this.binding.btn6, this.binding.btn7, this.binding.btn8, this.binding.btn9, this.binding.btn0)
+        numpadButtons.addAll(numberButtons)
+        numpadButtons.add(this.binding.btnClear)
+        numpadButtons.add(this.binding.btnSign)
+        numpadButtons.add(this.binding.btnEquals)
+        numpadButtons.add(this.binding.btnBackspace)
+        numpadButtons.add(this.binding.btnQuit)
 
-        for(btn in buttonsNumber) btn.setOnClickListener(this)
-        this.binding.btnClear.setOnClickListener(this)
-        this.binding.btnSign.setOnClickListener(this)
-        this.binding.btnEquals.setOnClickListener(this)
-        this.binding.btnBackspace.setOnClickListener(this)
+        for(btn in numpadButtons) {
+            btn.setOnClickListener(this)
+            btn.isEnabled = false
+        }
         this.binding.btnTryAgain.setOnClickListener(this)
         this.binding.btnHome.setOnClickListener(this)
-        this.binding.btnQuit.setOnClickListener(this)
         // endregion
     }
 
@@ -139,19 +143,13 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun startGame() {
         // hide results screen
-        binding.tvResults.visibility = View.GONE
-        binding.llGameOverMenu.visibility = View.GONE
+        binding.llGameOver.visibility = View.GONE
 
-        // show keypad
-        binding.clKeyboard.visibility = View.VISIBLE
-        for(btn in buttonsNumber) btn.isEnabled = true
-        binding.btnEquals.isEnabled = true
-        binding.btnBackspace.isEnabled = true
-        binding.btnSign.isEnabled = true
-        binding.btnClear.isEnabled = true
+        // enable keypad
+        for(btn in numpadButtons) btn.isEnabled = true
 
-        // show home menu
-        binding.llMenu.visibility = View.VISIBLE
+        // enable quit
+        binding.btnQuit.isEnabled = true
 
         generateProblem()
         if(currTimerSeconds!! != TimerSeconds.CASUAL) startTimer()
@@ -159,11 +157,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun gameOver() {
         gameover = true
-        for(btn in buttonsNumber) btn.isEnabled = false
-        binding.btnEquals.isEnabled = false
-        binding.btnBackspace.isEnabled = false
-        binding.btnSign.isEnabled = false
-        binding.btnClear.isEnabled = false
+        for(btn in numpadButtons) btn.isEnabled = false
 
         binding.tvAnswer.text = ""
 
@@ -171,20 +165,20 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         val animationFadeOut = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_out)
         binding.clKeyboard.startAnimation(animationFadeOut)
         Handler().postDelayed({
-            binding.clKeyboard.visibility = View.GONE
-            binding.llMenu.visibility = View.GONE
+            binding.btnQuit.isEnabled = false
         }, 200)
         // endregion
 
         setHighScore()
 
+        binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), getString(currDifficulty!!.label), score)
+        this.binding.tvHighScoreLbl.text = getString(R.string.number, highscore)
+        this.binding.tvAttemptsLbl.text = getString(R.string.number, sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0))
+
         // region show game over screen
         val animationFadeIn = AnimationUtils.loadAnimation(this@DrillStartActivity, R.anim.fade_in)
-        binding.tvResults.text = getString(R.string.results, currTimerSeconds!!.description, currOperation.toString(), getString(currDifficulty!!.label), score, highscore, sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), 0))
-        binding.tvResults.visibility = View.VISIBLE
-        binding.llGameOverMenu.visibility = View.VISIBLE
-        binding.tvResults.startAnimation(animationFadeIn)
-        binding.llGameOverMenu.startAnimation(animationFadeIn)
+        binding.llGameOver.visibility = View.VISIBLE
+        binding.llGameOver.startAnimation(animationFadeIn)
         // endregion
     }
 
@@ -209,6 +203,9 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private fun startCountdown() {
         gameover = false
 
+        // hide results
+        this.binding.llGameOver.visibility = View.GONE
+
         // -1 attempt
         val attempts =
             this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
@@ -223,8 +220,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         score = 0
         this.binding.tvScore.text = getString(R.string.number, score)
 
-        // show curtain
-        this.binding.clCurtain.visibility = View.VISIBLE
+        // show countdown
+        this.binding.llCountdown.visibility = View.VISIBLE
 
         // set countdown
         val timer = object : CountDownTimer((countdownStart * 1000L), 1000) {
@@ -237,7 +234,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             }
 
             override fun onFinish() {
-                binding.clCurtain.visibility = View.GONE
+                binding.tvCountdown.text = ""
+                binding.llCountdown.visibility = View.GONE
                 startGame()
             }
         }
@@ -286,9 +284,9 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     override fun onClick(v: View?) {
         val currAns = binding.tvAnswer.text.toString()
         when(v) {
-            in buttonsNumber -> {
-                val btn = v as Button
-                val num = "${btn.text}"
+            in numberButtons -> {
+                val btn = v as ImageButton
+                val num = "${btn.contentDescription}"
                 if (currAns == "0")
                     binding.tvAnswer.text = getString(R.string.words, num)
                 else if (currAns == "-0")
