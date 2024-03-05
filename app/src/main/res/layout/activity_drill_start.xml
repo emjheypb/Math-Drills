@@ -332,7 +332,7 @@
             android:id="@+id/tv_Countdown"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/countdown"
+            android:text="@string/number"
             android:gravity="center"
             android:textSize="80sp"
             android:textStyle="bold"

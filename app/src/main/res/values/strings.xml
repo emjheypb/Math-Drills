@@ -1,38 +1,41 @@
 <resources>
     <string name="app_name">Math Drills</string>
     <string name="app_name_upper">MATH DRILLS</string>
-    <string name="lbl_timer">Timer</string>
+
     <string name="lbl_casual">Casual</string>
     <string name="lbl_timer_60">60 Seconds</string>
     <string name="lbl_timer_180">180 Seconds</string>
+
+    <string name="lbl_timer">Timer</string>
     <string name="lbl_operation">Operation</string>
-    <string name="lbl_play">PLAY</string>
-    <string name="lbl_start">START</string>
     <string name="lbl_difficulty">Difficulty</string>
-    <string name="lbl_high_score">High Score: %1$d</string>
-    <string name="lbl_attempts_remaining">Attempts Remaining: %1$d</string>
-    <string name="sym_addition">+</string>
-    <string name="sym_subtraction">-</string>
-    <string name="sym_multiplication">x</string>
-    <string name="sym_division">÷</string>
-    <string name="lbl_random_upper">RANDOM</string>
-    <string name="lbl_all_upper">ALL</string>
+    <string name="lbl_high_score">High Score</string>
+    <string name="lbl_attempts_remaining">Attempts Remaining</string>
+
+    <string name="lbl_addition">Addition</string>
+    <string name="lbl_subtraction">Subtraction</string>
+    <string name="lbl_multiplication">Multiplication</string>
+    <string name="lbl_division">Division</string>
+
     <string name="lbl_beginner">Beginner</string>
     <string name="lbl_easy">Easy</string>
     <string name="lbl_intermediate">Intermediate</string>
     <string name="lbl_hard">Hard</string>
     <string name="lbl_whiz">Math Whiz</string>
 
-    <string name="countdown">%1$s</string>
+    <string name="lbl_play">PLAY</string>
+    <string name="lbl_start">START</string>
 
     <string name="countdown_timer">%1$s : %2$s</string>
     <string name="number">%1$d</string>
     <string name="words">%1$s</string>
-    <string name="answer">Answer</string>
     <string name="results">%1$s\n%2$s\n%3$s\n\nSCORE: %4$d\nHIGH SCORE: %5$d\n\nAttempts Remaining: %6$d</string>
+
     <string name="home_button">Home</string>
     <string name="quit_button">Quit</string>
     <string name="try_again">Try Again</string>
+    <string name="answer">Answer</string>
+
     <string name="num_7">7</string>
     <string name="num_8">8</string>
     <string name="num_9">9</string>

@@ -12,266 +12,220 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/blackopsone_regular"
         android:gravity="center"
         android:text="@string/app_name_upper"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/blackopsone_regular" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_Version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/anonymouspro_regular"
         android:gravity="center"
         android:text="@string/words"
         android:textSize="11sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        android:fontFamily="@font/anonymouspro_regular" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <TextView
         android:id="@+id/tv_lbl_timer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_timer"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Version"
-        android:fontFamily="@font/blackopsone_regular" />
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Version" />
 
-    <Button
-        android:id="@+id/btn_Casual"
+    <LinearLayout
+        android:id="@+id/ll_Timers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/lbl_casual"
-        app:layout_constraintEnd_toStartOf="@id/btn_60"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer" />
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer">
 
-    <Button
-        android:id="@+id/btn_60"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/lbl_timer_60"
-        app:layout_constraintEnd_toStartOf="@id/btn_180"
-        app:layout_constraintStart_toEndOf="@id/btn_Casual"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer" />
+        <ImageButton
+            android:id="@+id/btn_Casual"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_casual"
+            android:contentDescription="@string/lbl_casual" />
 
-    <Button
-        android:id="@+id/btn_180"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/lbl_timer_180"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_60"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer" />
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btn_60"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_60_seconds"
+            android:contentDescription="@string/lbl_timer_60" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/btn_180"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_180_seconds"
+            android:contentDescription="@string/lbl_timer_180" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_lbl_operation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_operation"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_60"
-        android:fontFamily="@font/blackopsone_regular" />
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@id/ll_Timers" />
 
-    <Button
-        android:id="@+id/btn_op_addition"
+    <LinearLayout
+        android:id="@+id/ll_Operations"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/sym_addition"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/btn_op_subtraction"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation" />
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation">
 
-    <Button
-        android:id="@+id/btn_op_subtraction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/sym_subtraction"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/btn_op_multiplication"
-        app:layout_constraintStart_toEndOf="@id/btn_op_addition"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation" />
+        <ImageButton
+            android:id="@+id/btn_op_addition"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_addition"
+            android:contentDescription="@string/lbl_addition"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/btn_op_multiplication"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/sym_multiplication"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@id/btn_op_division"
-        app:layout_constraintStart_toEndOf="@id/btn_op_subtraction"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation" />
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_op_division"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/sym_division"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_op_multiplication"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation" />
+        <ImageButton
+            android:id="@+id/btn_op_subtraction"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_subtraction"
+            android:contentDescription="@string/lbl_subtraction"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/btn_op_random"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_random_upper"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/btn_op_all"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_op_addition" />
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_op_all"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/lbl_all_upper"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_op_random"
-        app:layout_constraintTop_toBottomOf="@id/btn_op_addition" />
+        <ImageButton
+            android:id="@+id/btn_op_multiplication"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_multiplication"
+            android:contentDescription="@string/lbl_multiplication"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_lbl_difficulty"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_difficulty"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_op_all"
-        android:fontFamily="@font/blackopsone_regular" />
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@id/ll_Operations" />
 
-    <Button
-        android:id="@+id/btn_difficulty_beginner"
+    <LinearLayout
+        android:id="@+id/ll_Difficulty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="@string/lbl_beginner"
-        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_easy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty" />
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/btn_difficulty_easy"
+        <ImageButton
+            android:id="@+id/btn_prev_difficulty"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_left_arrow"/>
+
+        <TextView
+            android:id="@+id/tv_Difficulty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/blackopsone_regular"
+            android:gravity="center"
+            android:text="@string/words"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btn_next_difficulty"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_right_arrow"
+            android:contentDescription="TODO" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/lbl_easy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_difficulty_beginner"
-        app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty" />
-
-    <Button
-        android:id="@+id/btn_difficulty_intermediate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="@string/lbl_intermediate"
-        app:layout_constraintEnd_toStartOf="@id/btn_difficulty_hard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_beginner" />
-
-    <Button
-        android:id="@+id/btn_difficulty_hard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_hard"
-        android:layout_marginStart="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_difficulty_intermediate"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_easy" />
-
-    <Button
-        android:id="@+id/btn_difficulty_whiz"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:text="@string/lbl_whiz"
-        app:layout_constraintEnd_toEndOf="@id/gl_75"
-        app:layout_constraintStart_toStartOf="@id/gl_25"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_hard"
-        app:layout_constrainedWidth="true"/>
-
-    <TextView
-        android:id="@+id/tv_highscore_lbl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/lbl_high_score"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_difficulty_whiz"
-        android:fontFamily="@font/blackopsone_regular" />
-
-    <TextView
-        android:id="@+id/tv_attempts_lbl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/lbl_attempts_remaining"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/blackopsone_regular" />
+        app:layout_constraintEnd_toEndOf="@id/btn_start"
+        app:layout_constraintStart_toStartOf="@id/btn_start">
 
-    <Button
+        <TextView
+            android:id="@+id/tv_High_Score_Lbl"
+            android:layout_width="108dp"
+            android:layout_height="88dp"
+            android:background="@drawable/circle"
+            android:fontFamily="@font/anonymouspro_regular"
+            android:gravity="center"
+            android:text="@string/number"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_Attempts_Lbl"
+            android:layout_width="108dp"
+            android:layout_height="88dp"
+            android:background="@drawable/heart"
+            android:fontFamily="@font/anonymouspro_regular"
+            android:gravity="center"
+            android:text="@string/number"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ImageButton
         android:id="@+id/btn_start"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:enabled="false"
-        android:text="@string/lbl_play"
-        android:textSize="24sp"
+        android:background="@drawable/btn_play"
+        android:contentDescription="@string/lbl_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/blackopsone_regular" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25"
-        android:id="@+id/gl_25"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75"
-        android:id="@+id/gl_75"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
