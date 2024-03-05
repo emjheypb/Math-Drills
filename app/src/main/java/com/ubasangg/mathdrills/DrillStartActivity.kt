@@ -68,7 +68,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
             this.binding.tvScore.text = getString(R.string.number, score)
             updateTimer(currTimerSeconds!!.seconds / 60, currTimerSeconds!!.seconds % 60)
-            this.binding.tvOperation.text = currOperation!!.description
+            this.binding.tvOperation.text = currOperation!!.sign
 
             // region set high score display
             val highScoreDS = sharedPreferences.getString(SharedPrefRef.SP_HIGH_SCORES.toString(), "")
@@ -269,7 +269,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun updateCountdown(seconds: Int) {
         // update curtain countdown display
-        this.binding.tvCountdown.text = if(seconds != 0) getString(R.string.countdown, seconds.toString()) else getString(R.string.lbl_start)
+        this.binding.tvCountdown.text = if(seconds != 0) getString(R.string.number, seconds) else getString(R.string.lbl_start)
     }
 
     private fun generateProblem() {

@@ -4,8 +4,8 @@ import com.ubasangg.mathdrills.classes.Problem
 import com.ubasangg.mathdrills.interfaces.OperationInterface
 import java.util.function.BinaryOperator
 
-enum class Operation(val description: String, val index: Int)  : BinaryOperator<Int>, OperationInterface {
-    ADDITION("+", 0) {
+enum class Operation(val sign: String, val index: Int, val description: String)  : BinaryOperator<Int>, OperationInterface {
+    ADDITION("+", 0, "Addition") {
         override fun apply(t: Int, u: Int): Int = t + u
         override fun generateProblem(difficulty: Difficulty): Problem {
             val min = difficulty.asMin
@@ -32,7 +32,7 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             return Problem(num1, num2, answer)
         }
     },
-    SUBTRACTION("-", 1){
+    SUBTRACTION("-", 1, "Subtraction"){
         override fun apply(t: Int, u: Int): Int = t - u
         override fun generateProblem(difficulty: Difficulty): Problem {
             val min = difficulty.asMin
@@ -62,7 +62,7 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             return Problem(num1, num2, answer)
         }
     },
-    MULTIPLICATION("x", 2){
+    MULTIPLICATION("x", 2, "Multiplication"){
         override fun apply(t: Int, u: Int): Int = t * u
         override fun generateProblem(difficulty: Difficulty): Problem {
             val bottomMin =
@@ -101,7 +101,7 @@ enum class Operation(val description: String, val index: Int)  : BinaryOperator<
             return Problem(num1, num2, answer)
         }
     },
-    DIVISION("÷", 3){
+    DIVISION("÷", 3, "Division"){
         override fun apply(t: Int, u: Int): Int = t / u
         override fun generateProblem(difficulty: Difficulty): Problem {
             val min = difficulty.mdBottom

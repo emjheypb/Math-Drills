@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private lateinit var prefEditor: SharedPreferences.Editor
     private val gson = Gson()
 
-    private lateinit var timerButtons: List<Button>
-    private lateinit var operationButtons: List<Button>
-    private lateinit var difficultyButtons: List<Button>
+    private lateinit var timerButtons: List<ImageButton>
+    private lateinit var operationButtons: List<ImageButton>
 
+    private val difficulties = Difficulty.entries
     private val defaultAttempts = 99
 
     private var currTimerSeconds: TimerSeconds? = null
@@ -54,30 +54,22 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             this.binding.btnOpAddition,
             this.binding.btnOpSubtraction,
             this.binding.btnOpMultiplication,
-            this.binding.btnOpDivision,
-            this.binding.btnOpRandom,
-            this.binding.btnOpAll
-        )
-        difficultyButtons = listOf(
-            this.binding.btnDifficultyEasy,
-            this.binding.btnDifficultyIntermediate,
-            this.binding.btnDifficultyHard,
-            this.binding.btnDifficultyWhiz,
-            this.binding.btnDifficultyBeginner
         )
 
-        val buttons = mutableListOf<Button>()
+        val buttons = mutableListOf<ImageButton>()
         buttons.addAll(timerButtons)
         buttons.addAll(operationButtons)
-        buttons.addAll(difficultyButtons)
+        buttons.add(this.binding.btnStart)
+        buttons.add(this.binding.btnPrevDifficulty)
+        buttons.add(this.binding.btnNextDifficulty)
 
         for (btn in buttons) btn.setOnClickListener(this)
+
         val pInfo = packageManager.getPackageInfo(packageName, 0)
         val version = pInfo.versionName //Version Name
 
-        this.binding.btnStart.setOnClickListener(this)
         this.binding.tvVersion.text = getString(R.string.words, "v$version")
-        this.binding.tvAttemptsLbl.text = getString(R.string.lbl_attempts_remaining, defaultAttempts)
+        this.binding.btnStart.isEnabled = false
         // endregion
     }
 
@@ -111,90 +103,98 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
             btnIsSelected(timerButtons, timerButtons[currTimerSeconds!!.index])
             btnIsSelected(operationButtons, operationButtons[currOperation!!.index])
-            btnIsSelected(difficultyButtons, difficultyButtons[currDifficulty!!.index])
+        }
+        else {
+            currDifficulty = difficulties[0]
         }
         // endregion
 
+        setLevel()
         super.onResume()
     }
 
-    private fun btnIsSelected(buttons: List<Button>, currBtn: Button) {
-        // region set highlighted button based on last user selection
-        for (btn in buttons) {
-            if (btn == currBtn) btn.setBackgroundColor(getColor(R.color.primary))
-            else btn.setBackgroundColor(getColor(R.color.disabled))
-        }
+    private fun setLevel() {
+        this.binding.tvDifficulty.text = getString(currDifficulty!!.label)
+
+        // region set attempts & high score
+        this.binding.tvAttemptsLbl.text = if(currTimerSeconds == null) getString(R.string.number, defaultAttempts) else getString(R.string.number, attempts[currTimerSeconds!!.index])
+        this.binding.tvHighScoreLbl.text = getString(R.string.number, 0)
         // endregion
 
-        // region set defaults for selected level options
-        this.binding.tvHighscoreLbl.text = getString(R.string.lbl_high_score, 0)
-        this.binding.tvHighscoreLbl.visibility = View.VISIBLE
-
-        this.binding.tvAttemptsLbl.text = if(currTimerSeconds == null) getString(R.string.lbl_attempts_remaining, 0) else getString(R.string.lbl_attempts_remaining, attempts[currTimerSeconds!!.index])
-
-        val highScoreDS = sharedPreferences.getString(SharedPrefRef.SP_HIGH_SCORES.toString(), "")
-        val typeToken = object : TypeToken<List<HighScore>>() {}.type
-        if (highScoreDS != "") {
-            val highscores = gson.fromJson<List<HighScore>>(highScoreDS, typeToken).toMutableList()
-            for (hs in highscores) {
-                if (hs.level.timerSeconds == currTimerSeconds && hs.level.operation == currOperation && hs.level.difficulty == currDifficulty) {
-                    this.binding.tvHighscoreLbl.text = getString(R.string.lbl_high_score, hs.score)
-                    break
-                }
-            }
-        }
-        // endregion
-
-        // region set level shared preference
         if(currTimerSeconds != null && currOperation != null && currDifficulty != null) {
+            // region set level shared preference
             val level =
                 gson.toJson(Level(currTimerSeconds!!, currOperation!!, currDifficulty!!))
             this.prefEditor.putString(SharedPrefRef.SP_LEVEL.toString(), level)
             this.prefEditor.apply()
 
             this.binding.btnStart.isEnabled = attempts[currTimerSeconds!!.index] > 0
+            // endregion
+
+            // region set high score
+            val highScoreDS = sharedPreferences.getString(SharedPrefRef.SP_HIGH_SCORES.toString(), "")
+            if (highScoreDS != "") {
+                val typeToken = object : TypeToken<List<HighScore>>() {}.type
+                val highScores = gson.fromJson<List<HighScore>>(highScoreDS, typeToken).toMutableList()
+                for (hs in highScores) {
+                    if (hs.level.timerSeconds == currTimerSeconds && hs.level.operation == currOperation && hs.level.difficulty == currDifficulty) {
+                        this.binding.tvHighScoreLbl.text = getString(R.string.number, hs.score)
+                        break
+                    }
+                }
+            }
+            // endregion
         }
-        // endregion
+    }
+
+    private fun btnIsSelected(buttons: List<ImageButton>, currBtn: ImageButton) {
+        // set highlighted button based on last user selection
+        for (btn in buttons) {
+            btn.isActivated = btn == currBtn
+        }
+    }
+
+    private fun setDifficulty(step: Int) {
+        val index = currDifficulty!!.index + step
+        currDifficulty = difficulties[if(index == difficulties.size) 0 else if(index < 0) 4 else index]
+        this.binding.tvDifficulty.text = getString(currDifficulty!!.label)
     }
 
     override fun onClick(v: View?) {
-        when (v as Button) {
+        when (v as ImageButton) {
             in timerButtons -> {
-                for (timerseconds in TimerSeconds.entries) {
-                    if (timerseconds.description == v.text) {
-                        currTimerSeconds = timerseconds
+                for (timerSeconds in TimerSeconds.entries) {
+                    if (timerSeconds.description == v.contentDescription) {
+                        currTimerSeconds = timerSeconds
                         break
                     }
                 }
                 btnIsSelected(timerButtons, v)
+                setLevel()
             }
 
             in operationButtons -> {
                 for (operation in Operation.entries) {
-                    if (operation.description == v.text) {
+                    if (operation.description == v.contentDescription) {
                         currOperation = operation
                         break
                     }
                 }
                 btnIsSelected(operationButtons, v)
+                setLevel()
             }
 
-            in difficultyButtons -> {
-                currDifficulty = if(v.text.toString() == getString(R.string.lbl_whiz)) {
-                    Difficulty.WHIZ
-                } else {
-                    Difficulty.valueOf(v.text.toString().uppercase())
-                }
-                btnIsSelected(difficultyButtons, v)
+            this.binding.btnNextDifficulty -> {
+                setDifficulty(1)
+                setLevel()
+            }
+
+            this.binding.btnPrevDifficulty -> {
+                setDifficulty(-1)
+                setLevel()
             }
 
             this.binding.btnStart -> {
-                // -1 attempt
-//                val attempts =
-//                    this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
-//                this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
-//                this.prefEditor.apply()
-
                 val intent = Intent(this@MainActivity, DrillStartActivity::class.java)
                 startActivity(intent)
             }
