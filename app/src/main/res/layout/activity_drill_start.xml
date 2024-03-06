@@ -241,7 +241,7 @@
                     android:id="@+id/btn_Equals"
                     android:layout_width="@dimen/numpad_buttons"
                     android:layout_height="@dimen/numpad_equals_button_h"
-                    android:background="@drawable/btn_check"
+                    android:background="@drawable/btn_long_check"
                     android:contentDescription="@string/submit"
                     android:enabled="false" />
             </LinearLayout>

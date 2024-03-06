@@ -2,16 +2,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/pressed_left_arrow" />
+        android:drawable="@drawable/pressed_backspace" />
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@drawable/pressed_left_arrow" />
+        android:drawable="@drawable/pressed_backspace" />
     <item
         android:state_activated="true"
         android:state_enabled="true"
-        android:drawable="@drawable/pressed_left_arrow" />
+        android:drawable="@drawable/pressed_backspace" />
     <item
         android:state_enabled="true"
-        android:drawable="@drawable/default_left_arrow" />
+        android:drawable="@drawable/default_backspace" />
 </selector>

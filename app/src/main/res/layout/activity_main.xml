@@ -248,7 +248,7 @@
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/regular_buttons"
-        android:background="@drawable/btn_play"
+        android:background="@drawable/btn_long_play"
         android:contentDescription="@string/lbl_play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
