@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_margin="@dimen/content_padding_margin">
 
         <LinearLayout
             android:id="@+id/ll_header"
@@ -17,30 +17,71 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_Timer"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:text="@string/countdown_timer"
-                android:textSize="32sp" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_Score"
-                android:layout_width="match_parent"
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/anonymouspro_regular"
+                    android:text="@string/lbl_timer" />
+
+                <TextView
+                    android:id="@+id/tv_Timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/anonymouspro_regular"
+                    android:text="@string/countdown_timer"
+                    android:textSize="@dimen/txt_l" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:text="@string/number"
-                android:textAlignment="viewEnd"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/anonymouspro_regular"
+                    android:text="@string/lbl_score" />
+
+                <TextView
+                    android:id="@+id/tv_Score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/anonymouspro_regular"
+                    android:text="@string/number"
+                    android:textAlignment="viewEnd"
+                    android:textSize="@dimen/txt_l"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="@dimen/space_smallest"
+                android:layout_height="match_parent" />
 
             <ImageButton
                 android:id="@+id/btn_Quit"
-                android:layout_width="@dimen/small_buttons"
-                android:layout_height="@dimen/small_buttons"
+                android:layout_width="@dimen/btn_s"
+                android:layout_height="@dimen/btn_s"
                 android:background="@drawable/btn_quit"
                 android:contentDescription="@string/quit_button" />
         </LinearLayout>
@@ -49,12 +90,12 @@
             android:id="@+id/tv_Num1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/space"
             android:layout_weight="1"
             android:fontFamily="@font/blackopsone_regular"
             android:text="@string/number"
             android:textAlignment="viewEnd"
-            android:textSize="40sp"
+            android:textSize="@dimen/txt_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_Operation"
             app:layout_constraintTop_toBottomOf="@id/ll_header" />
@@ -67,7 +108,7 @@
             android:fontFamily="@font/blackopsone_regular"
             android:text="@string/number"
             android:textAlignment="viewEnd"
-            android:textSize="40sp"
+            android:textSize="@dimen/txt_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_Operation"
             app:layout_constraintTop_toBottomOf="@id/tv_Num1" />
@@ -79,7 +120,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/blackopsone_regular"
             android:text="@string/words"
-            android:textSize="40sp"
+            android:textSize="@dimen/txt_xl"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_Num1" />
@@ -87,7 +128,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
+            android:layout_height="@dimen/divider"
             android:background="@color/black"
             app:layout_constraintTop_toBottomOf="@id/tv_Operation" />
 
@@ -97,8 +138,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/blackopsone_regular"
             android:hint="@string/answer"
+            android:maxLength="17"
             android:textAlignment="viewEnd"
-            android:textSize="40sp"
+            android:textSize="@dimen/txt_xl"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <LinearLayout
@@ -117,32 +159,32 @@
 
                 <ImageButton
                     android:id="@+id/btn_7"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_7"
                     android:contentDescription="@string/num_7"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_4"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_4"
                     android:contentDescription="@string/num_4"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_1"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_1"
                     android:contentDescription="@string/num_1"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_Sign"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_signs"
                     android:contentDescription="@string/pos_neg"
                     android:enabled="false" />
@@ -155,32 +197,32 @@
 
                 <ImageButton
                     android:id="@+id/btn_8"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_8"
                     android:contentDescription="@string/num_8"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_5"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_5"
                     android:contentDescription="@string/num_5"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_2"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_2"
                     android:contentDescription="@string/num_2"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_0"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_0"
                     android:contentDescription="@string/num_0"
                     android:enabled="false" />
@@ -193,32 +235,32 @@
 
                 <ImageButton
                     android:id="@+id/btn_9"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_9"
                     android:contentDescription="@string/num_9"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_6"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_6"
                     android:contentDescription="@string/num_6"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_3"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_3"
                     android:contentDescription="@string/num_3"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_Clear"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_clear"
                     android:contentDescription="@string/ltr_c"
                     android:enabled="false" />
@@ -231,16 +273,16 @@
 
                 <ImageButton
                     android:id="@+id/btn_Backspace"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_buttons"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_numpad"
                     android:background="@drawable/btn_backspace"
                     android:contentDescription="@string/backspace"
                     android:enabled="false" />
 
                 <ImageButton
                     android:id="@+id/btn_Equals"
-                    android:layout_width="@dimen/numpad_buttons"
-                    android:layout_height="@dimen/numpad_equals_button_h"
+                    android:layout_width="@dimen/btn_numpad"
+                    android:layout_height="@dimen/btn_long"
                     android:background="@drawable/btn_long_check"
                     android:contentDescription="@string/submit"
                     android:enabled="false" />
@@ -248,24 +290,17 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_Countdown"
+    <TextView
+        android:id="@+id/tv_Countdown"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black_see_through"
+        android:fontFamily="@font/blackopsone_regular"
         android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_Countdown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/blackopsone_regular"
-            android:text="@string/number"
-            android:textColor="@color/white"
-            android:textSize="80sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:text="@string/number"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_xxl"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/ll_Game_Over"
@@ -282,22 +317,22 @@
             android:fontFamily="@font/blackopsone_regular"
             android:text="@string/time_up"
             android:textColor="@color/white"
-            android:textSize="40sp" />
+            android:textSize="@dimen/txt_xl" />
 
         <TextView
             android:id="@+id/tv_Results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/space"
             android:fontFamily="@font/anonymouspro_regular"
             android:text="@string/results"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/txt_m" />
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="24dp" />
+            android:layout_height="@dimen/space" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -326,7 +361,7 @@
                     android:text="@string/number"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/txt_m"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -352,7 +387,7 @@
                     android:gravity="center"
                     android:text="@string/number"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/txt_m"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -363,17 +398,73 @@
 
             <ImageButton
                 android:id="@+id/btn_Try_Again"
-                android:layout_width="@dimen/regular_buttons"
-                android:layout_height="@dimen/regular_buttons"
+                android:layout_width="@dimen/btn_l"
+                android:layout_height="@dimen/btn_l"
                 android:background="@drawable/btn_try_again"
                 android:contentDescription="@string/try_again" />
 
             <ImageButton
                 android:id="@+id/btn_Home"
-                android:layout_width="@dimen/regular_buttons"
-                android:layout_height="@dimen/regular_buttons"
+                android:layout_width="@dimen/btn_l"
+                android:layout_height="@dimen/btn_l"
                 android:background="@drawable/btn_home"
                 android:contentDescription="@string/home_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_Alert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_see_through"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/blackopsone_regular"
+            android:text="@string/alert_title"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_l" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_smallest" />
+
+        <TextView
+            android:id="@+id/tv_Alert_Message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/anonymouspro_regular"
+            android:text="@string/words"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_s" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_Yes"
+                android:layout_width="@dimen/btn_l"
+                android:layout_height="@dimen/btn_l"
+                android:background="@drawable/btn_check"
+                android:contentDescription="@string/yes_button" />
+
+            <ImageButton
+                android:id="@+id/btn_No"
+                android:layout_width="@dimen/btn_l"
+                android:layout_height="@dimen/btn_l"
+                android:background="@drawable/btn_quit"
+                android:contentDescription="@string/no_button" />
         </LinearLayout>
     </LinearLayout>
 

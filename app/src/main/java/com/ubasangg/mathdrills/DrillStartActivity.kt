@@ -107,6 +107,8 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         }
         this.binding.btnTryAgain.setOnClickListener(this)
         this.binding.btnHome.setOnClickListener(this)
+        this.binding.btnYes.setOnClickListener(this)
+        this.binding.btnNo.setOnClickListener(this)
         // endregion
     }
 
@@ -122,22 +124,10 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
     private fun backToHome() {
         if(gameover) finish()
         else {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-            builder
-                .setTitle("Are you sure you want to quit?")
-                .setMessage(
-                    if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: $score"
-                    else "You will lose your attempt and score.")
-                .setPositiveButton("CANCEL") { _, _ ->
-                    // Do something.
-                }
-                .setNegativeButton("QUIT") { _, _ ->
-                    if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
-                    finish()
-                }
-
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+            for(btn in numpadButtons) btn.isEnabled = false
+            this.binding.tvAlertMessage.text = if(currTimerSeconds!! == TimerSeconds.CASUAL) "High Score: ${highscore}\nCurrent Score: $score"
+            else "You will lose your attempt and score."
+            this.binding.llAlert.visibility = View.VISIBLE
         }
     }
 
@@ -157,8 +147,9 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
     private fun gameOver() {
         gameover = true
-        for(btn in numpadButtons) btn.isEnabled = false
 
+        this.binding.llAlert.visibility = View.GONE
+        for(btn in numpadButtons) btn.isEnabled = false
         binding.tvAnswer.text = ""
 
         // region hide custom keypad
@@ -221,7 +212,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
         this.binding.tvScore.text = getString(R.string.number, score)
 
         // show countdown
-        this.binding.llCountdown.visibility = View.VISIBLE
+        this.binding.tvCountdown.visibility = View.VISIBLE
 
         // set countdown
         val timer = object : CountDownTimer((countdownStart * 1000L), 1000) {
@@ -235,7 +226,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
 
             override fun onFinish() {
                 binding.tvCountdown.text = ""
-                binding.llCountdown.visibility = View.GONE
+                binding.tvCountdown.visibility = View.GONE
                 startGame()
             }
         }
@@ -330,6 +321,14 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             }
             binding.btnHome, binding.btnQuit -> {
                 backToHome()
+            }
+            binding.btnYes -> {
+                if(currTimerSeconds!! == TimerSeconds.CASUAL) setHighScore()
+                finish()
+            }
+            binding.btnNo -> {
+                for(btn in numpadButtons) btn.isEnabled = true
+                binding.llAlert.visibility = View.GONE
             }
         }
     }

@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="numpad_buttons">88dp</dimen>
-    <dimen name="numpad_equals_button_h">264dp</dimen>
+    <dimen name="btn_numpad">88dp</dimen>
+    <dimen name="btn_long">264dp</dimen>
 
-    <dimen name="regular_buttons">104dp</dimen>
-    <dimen name="small_buttons">56dp</dimen>
+    <dimen name="btn_xs">24dp</dimen>
+    <dimen name="btn_s">40dp</dimen>
+    <dimen name="btn_m">56dp</dimen>
+    <dimen name="btn_l">104dp</dimen>
 
     <dimen name="circle_heart_w">112dp</dimen>
     <dimen name="circle_heart_h">88dp</dimen>
+
+    <dimen name="content_padding_margin">16dp</dimen>
+
+    <dimen name="space_smallest">8dp</dimen>
+    <dimen name="space">24dp</dimen>
+
+    <dimen name="divider">4dp</dimen>
+
+    <dimen name="txt_xs">11sp</dimen>
+    <dimen name="txt_s">16sp</dimen>
+    <dimen name="txt_m">24sp</dimen>
+    <dimen name="txt_l">32sp</dimen>
+    <dimen name="txt_xl">40sp</dimen>
+    <dimen name="txt_xxl">80sp</dimen>
 </resources>

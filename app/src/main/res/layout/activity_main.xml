@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/content_padding_margin"
     android:scrollbars="vertical"
     tools:context=".MainActivity">
 
@@ -15,7 +15,7 @@
         android:fontFamily="@font/blackopsone_regular"
         android:gravity="center"
         android:text="@string/app_name_upper"
-        android:textSize="32sp"
+        android:textSize="@dimen/txt_l"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:fontFamily="@font/anonymouspro_regular"
         android:gravity="center"
         android:text="@string/words"
-        android:textSize="11sp"
+        android:textSize="@dimen/txt_xs"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,10 +38,10 @@
         android:id="@+id/tv_lbl_timer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/space_smallest"
         android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_timer"
-        android:textSize="16sp"
+        android:textSize="@dimen/txt_s"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@+id/tv_Version" />
@@ -57,30 +57,30 @@
 
         <ImageButton
             android:id="@+id/btn_Casual"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_casual"
             android:contentDescription="@string/lbl_casual" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="@dimen/space_smallest"
             android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/btn_60"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_60_seconds"
             android:contentDescription="@string/lbl_timer_60" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="@dimen/space_smallest"
             android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/btn_180"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_180_seconds"
             android:contentDescription="@string/lbl_timer_180" />
     </LinearLayout>
@@ -89,10 +89,10 @@
         android:id="@+id/tv_lbl_operation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/space_smallest"
         android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_operation"
-        android:textSize="16sp"
+        android:textSize="@dimen/txt_s"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/ll_Timers" />
@@ -108,45 +108,42 @@
 
         <ImageButton
             android:id="@+id/btn_op_addition"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_addition"
-            android:contentDescription="@string/lbl_addition"
-            android:textSize="16sp" />
+            android:contentDescription="@string/lbl_addition" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="@dimen/space_smallest"
             android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/btn_op_subtraction"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_subtraction"
-            android:contentDescription="@string/lbl_subtraction"
-            android:textSize="16sp" />
+            android:contentDescription="@string/lbl_subtraction" />
 
         <Space
-            android:layout_width="8dp"
+            android:layout_width="@dimen/space_smallest"
             android:layout_height="wrap_content" />
 
         <ImageButton
             android:id="@+id/btn_op_multiplication"
-            android:layout_width="@dimen/regular_buttons"
-            android:layout_height="@dimen/regular_buttons"
+            android:layout_width="@dimen/btn_l"
+            android:layout_height="@dimen/btn_l"
             android:background="@drawable/btn_multiplication"
-            android:contentDescription="@string/lbl_multiplication"
-            android:textSize="16sp" />
+            android:contentDescription="@string/lbl_multiplication" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_lbl_difficulty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/space_smallest"
         android:fontFamily="@font/blackopsone_regular"
         android:text="@string/lbl_difficulty"
-        android:textSize="16sp"
+        android:textSize="@dimen/txt_s"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/ll_Operations" />
@@ -162,8 +159,8 @@
 
         <ImageButton
             android:id="@+id/btn_prev_difficulty"
-            android:layout_width="@dimen/small_buttons"
-            android:layout_height="@dimen/small_buttons"
+            android:layout_width="@dimen/btn_m"
+            android:layout_height="@dimen/btn_m"
             android:background="@drawable/btn_left_arrow" />
 
         <TextView
@@ -175,13 +172,13 @@
             android:gravity="center"
             android:text="@string/words"
             android:textAlignment="center"
-            android:textSize="24sp"
+            android:textSize="@dimen/txt_m"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btn_next_difficulty"
-            android:layout_width="@dimen/small_buttons"
-            android:layout_height="@dimen/small_buttons"
+            android:layout_width="@dimen/btn_m"
+            android:layout_height="@dimen/btn_m"
             android:background="@drawable/btn_right_arrow"
             android:contentDescription="TODO" />
     </LinearLayout>
@@ -215,7 +212,7 @@
                 android:gravity="center"
                 android:text="@string/number"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="@dimen/txt_m"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -239,7 +236,7 @@
                 android:fontFamily="@font/anonymouspro_regular"
                 android:gravity="center"
                 android:text="@string/number"
-                android:textSize="24sp"
+                android:textSize="@dimen/txt_m"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -247,7 +244,7 @@
     <ImageButton
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/regular_buttons"
+        android:layout_height="@dimen/btn_l"
         android:background="@drawable/btn_long_play"
         android:contentDescription="@string/lbl_play"
         app:layout_constraintBottom_toBottomOf="parent"
