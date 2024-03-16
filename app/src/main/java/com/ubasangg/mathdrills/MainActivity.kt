@@ -105,7 +105,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             btnIsSelected(operationButtons, operationButtons[currOperation!!.index])
         }
         else {
-            currDifficulty = difficulties[0]
+            currTimerSeconds = TimerSeconds.SECS60
+            currOperation = Operation.ADDITION
+            currDifficulty = difficulties[1]
+
+            btnIsSelected(timerButtons, timerButtons[currTimerSeconds!!.index])
+            btnIsSelected(operationButtons, operationButtons[currOperation!!.index])
         }
         // endregion
 
