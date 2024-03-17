@@ -5,18 +5,19 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.ubasangg.mathdrills.databinding.ActivityLauncherBinding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.ubasangg.mathdrills.databinding.ActivityGameTitleBinding
 
-class LauncherActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLauncherBinding
+class GameTitleActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityGameTitleBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityLauncherBinding.inflate(layoutInflater)
+        binding = ActivityGameTitleBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
-
-//        Glide.with(this).load(R.drawable.logo_ubasangg).into(this.binding.ivUbasangg)
 
         // hide status bar
         window.setFlags(
@@ -26,7 +27,7 @@ class LauncherActivity : AppCompatActivity() {
 
         // timer
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, GameTitleActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)
