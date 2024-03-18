@@ -46,44 +46,54 @@
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@+id/tv_Version" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_Timers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/tv_lbl_timer">
 
         <ImageButton
             android:id="@+id/btn_Casual"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_casual"
-            android:contentDescription="@string/lbl_casual" />
-
-        <Space
-            android:layout_width="@dimen/space_smallest"
-            android:layout_height="wrap_content" />
+            android:contentDescription="@string/lbl_casual"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
 
         <ImageButton
             android:id="@+id/btn_60"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_60_seconds"
-            android:contentDescription="@string/lbl_timer_60" />
-
-        <Space
-            android:layout_width="@dimen/space_smallest"
-            android:layout_height="wrap_content" />
+            android:contentDescription="@string/lbl_timer_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toStartOf="@+id/btn_180"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintStart_toEndOf="@+id/btn_Casual"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
 
         <ImageButton
             android:id="@+id/btn_180"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_180_seconds"
-            android:contentDescription="@string/lbl_timer_180" />
-    </LinearLayout>
+            android:contentDescription="@string/lbl_timer_180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_lbl_operation"
@@ -97,44 +107,69 @@
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/ll_Timers" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_Operations"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/tv_lbl_operation">
 
         <ImageButton
             android:id="@+id/btn_op_addition"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_addition"
-            android:contentDescription="@string/lbl_addition" />
-
-        <Space
-            android:layout_width="@dimen/space_smallest"
-            android:layout_height="wrap_content" />
+            android:contentDescription="@string/lbl_addition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
 
         <ImageButton
             android:id="@+id/btn_op_subtraction"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_subtraction"
-            android:contentDescription="@string/lbl_subtraction" />
-
-        <Space
-            android:layout_width="@dimen/space_smallest"
-            android:layout_height="wrap_content" />
+            android:contentDescription="@string/lbl_subtraction"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toStartOf="@id/btn_op_multiplication"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintStart_toEndOf="@id/btn_op_addition"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
 
         <ImageButton
             android:id="@+id/btn_op_multiplication"
-            android:layout_width="@dimen/btn_l"
-            android:layout_height="@dimen/btn_l"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_multiplication"
-            android:contentDescription="@string/lbl_multiplication" />
-    </LinearLayout>
+            android:contentDescription="@string/lbl_multiplication"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_op_division"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintStart_toEndOf="@id/btn_op_subtraction"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
+
+        <ImageButton
+            android:id="@+id/btn_op_division"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_division"
+            android:contentDescription="@string/lbl_division"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="@dimen/btn_l"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_l" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_lbl_difficulty"
@@ -148,20 +183,28 @@
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/ll_Operations" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_Difficulty"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start"
         app:layout_constraintTop_toBottomOf="@id/tv_lbl_difficulty">
 
         <ImageButton
             android:id="@+id/btn_prev_difficulty"
-            android:layout_width="@dimen/btn_m"
-            android:layout_height="@dimen/btn_m"
-            android:background="@drawable/btn_left_arrow" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_left_arrow"
+            android:contentDescription="@string/lbl_prev_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintHeight_max="@dimen/btn_m"
+            app:layout_constraintHeight_min="@dimen/btn_s"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_m"
+            app:layout_constraintWidth_min="@dimen/btn_s" />
 
         <TextView
             android:id="@+id/tv_Difficulty"
@@ -173,73 +216,94 @@
             android:text="@string/words"
             android:textAlignment="center"
             android:textSize="@dimen/txt_m"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_next_difficulty"
+            app:layout_constraintStart_toEndOf="@+id/btn_prev_difficulty"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/btn_next_difficulty"
-            android:layout_width="@dimen/btn_m"
-            android:layout_height="@dimen/btn_m"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/btn_right_arrow"
-            android:contentDescription="TODO" />
-    </LinearLayout>
+            android:contentDescription="@string/lbl_next_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="@dimen/btn_m"
+            app:layout_constraintHeight_min="@dimen/btn_s"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/btn_m"
+            app:layout_constraintWidth_min="@dimen/btn_s" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/btn_start"
         app:layout_constraintEnd_toEndOf="@id/btn_start"
         app:layout_constraintStart_toStartOf="@id/btn_start">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/lbl_High_Score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/anonymouspro_regular"
+            android:text="@string/lbl_high_score"
+            app:layout_constraintBottom_toTopOf="@id/tv_High_Score_Lbl"
+            app:layout_constraintEnd_toEndOf="@id/tv_High_Score_Lbl"
+            app:layout_constraintStart_toStartOf="@id/tv_High_Score_Lbl"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_High_Score_Lbl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/circle"
+            android:fontFamily="@font/anonymouspro_regular"
             android:gravity="center"
-            android:orientation="vertical">
+            android:text="@string/number"
+            android:textAlignment="center"
+            android:textSize="@dimen/txt_m"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1.27:1"
+            app:layout_constraintEnd_toStartOf="@id/tv_Attempts_Lbl"
+            app:layout_constraintHeight_max="@dimen/circle_heart_h"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_High_Score"
+            app:layout_constraintWidth_max="@dimen/circle_heart_w" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:text="@string/lbl_high_score" />
-
-            <TextView
-                android:id="@+id/tv_High_Score_Lbl"
-                android:layout_width="@dimen/circle_heart_w"
-                android:layout_height="@dimen/circle_heart_h"
-                android:background="@drawable/circle"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:gravity="center"
-                android:text="@string/number"
-                android:textAlignment="center"
-                android:textSize="@dimen/txt_m"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/lbl_Attempts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/anonymouspro_regular"
+            android:text="@string/lbl_attempts_remaining"
+            app:layout_constraintBottom_toTopOf="@id/tv_Attempts_Lbl"
+            app:layout_constraintEnd_toEndOf="@id/tv_Attempts_Lbl"
+            app:layout_constraintStart_toStartOf="@id/tv_Attempts_Lbl"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_Attempts_Lbl"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/heart"
+            android:fontFamily="@font/anonymouspro_regular"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:text="@string/lbl_attempts_remaining" />
-
-            <TextView
-                android:id="@+id/tv_Attempts_Lbl"
-                android:layout_width="@dimen/circle_heart_w"
-                android:layout_height="@dimen/circle_heart_h"
-                android:background="@drawable/heart"
-                android:fontFamily="@font/anonymouspro_regular"
-                android:gravity="center"
-                android:text="@string/number"
-                android:textSize="@dimen/txt_m"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
+            android:text="@string/number"
+            android:textSize="@dimen/txt_m"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H, 1.27:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="@dimen/circle_heart_h"
+            app:layout_constraintStart_toEndOf="@id/tv_High_Score_Lbl"
+            app:layout_constraintTop_toBottomOf="@id/lbl_Attempts"
+            app:layout_constraintWidth_max="@dimen/circle_heart_w" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/btn_start"

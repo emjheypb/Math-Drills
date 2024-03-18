@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             this.binding.btnOpAddition,
             this.binding.btnOpSubtraction,
             this.binding.btnOpMultiplication,
+            this.binding.btnOpDivision,
         )
 
         val buttons = mutableListOf<ImageButton>()
