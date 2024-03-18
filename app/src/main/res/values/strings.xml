@@ -23,6 +23,8 @@
     <string name="lbl_intermediate">Intermediate</string>
     <string name="lbl_hard">Hard</string>
     <string name="lbl_whiz">Math Whiz</string>
+    <string name="lbl_next_button">Next</string>
+    <string name="lbl_prev_button">Previous</string>
 
     <string name="lbl_play">PLAY</string>
     <string name="lbl_start">START</string>
