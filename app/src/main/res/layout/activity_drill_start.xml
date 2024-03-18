@@ -11,80 +11,73 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/content_padding_margin">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/lbl_Timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/space"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/lbl_timer"
+                app:layout_constraintBottom_toTopOf="@id/tv_Timer"
+                app:layout_constraintEnd_toEndOf="@id/tv_Timer"
+                app:layout_constraintStart_toStartOf="@id/tv_Timer"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/anonymouspro_regular"
-                    android:text="@string/lbl_timer" />
-
-                <TextView
-                    android:id="@+id/tv_Timer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/anonymouspro_regular"
-                    android:text="@string/countdown_timer"
-                    android:textSize="@dimen/txt_l" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_Timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/countdown_timer"
+                android:textSize="@dimen/txt_l"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lbl_Timer" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/space" />
+            <TextView
+                android:id="@+id/lbl_Score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/lbl_score"
+                app:layout_constraintBottom_toTopOf="@id/tv_Score"
+                app:layout_constraintEnd_toEndOf="@id/tv_Score"
+                app:layout_constraintStart_toStartOf="@id/tv_Score"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/anonymouspro_regular"
-                    android:text="@string/lbl_score" />
-
-                <TextView
-                    android:id="@+id/tv_Score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/anonymouspro_regular"
-                    android:text="@string/number"
-                    android:textAlignment="viewEnd"
-                    android:textSize="@dimen/txt_l"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <Space
-                android:layout_width="@dimen/space_smallest"
-                android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_Score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_smallest"
+                android:fontFamily="@font/anonymouspro_regular"
+                android:text="@string/number"
+                android:textAlignment="viewEnd"
+                android:textSize="@dimen/txt_l"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_Quit"
+                app:layout_constraintTop_toBottomOf="@id/lbl_Score" />
 
             <ImageButton
                 android:id="@+id/btn_Quit"
-                android:layout_width="@dimen/btn_s"
-                android:layout_height="@dimen/btn_s"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="@drawable/btn_quit"
-                android:contentDescription="@string/quit_button" />
-        </LinearLayout>
+                android:contentDescription="@string/quit_button"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="@dimen/btn_s"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="@dimen/btn_s" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_Num1"
@@ -143,7 +136,7 @@
             android:textSize="@dimen/txt_xl"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_Keyboard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -152,142 +145,223 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <!--region Row 4-->
+            <ImageButton
+                android:id="@+id/btn_7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_7"
+                android:contentDescription="@string/num_7"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_8"/>
 
-                <ImageButton
-                    android:id="@+id/btn_7"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_7"
-                    android:contentDescription="@string/num_7"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_8"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_8"
+                android:contentDescription="@string/num_8"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_5"
+                app:layout_constraintStart_toEndOf="@id/btn_7"
+                app:layout_constraintEnd_toStartOf="@id/btn_9"/>
 
-                <ImageButton
-                    android:id="@+id/btn_4"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_4"
-                    android:contentDescription="@string/num_4"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_9"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_9"
+                android:contentDescription="@string/num_9"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btn_6"
+                app:layout_constraintStart_toEndOf="@id/btn_8"
+                app:layout_constraintEnd_toStartOf="@id/btn_Backspace"/>
 
-                <ImageButton
-                    android:id="@+id/btn_1"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_1"
-                    android:contentDescription="@string/num_1"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_Backspace"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintVertical_weight="1"
+                android:background="@drawable/btn_backspace"
+                android:contentDescription="@string/backspace"
+                android:enabled="false"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/btn_9"
+                app:layout_constraintStart_toEndOf="@id/btn_9"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <!--endregion-->
 
-                <ImageButton
-                    android:id="@+id/btn_Sign"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_signs"
-                    android:contentDescription="@string/pos_neg"
-                    android:enabled="false" />
-            </LinearLayout>
+            <!--region Row 3-->
+            <ImageButton
+                android:id="@+id/btn_4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_4"
+                android:contentDescription="@string/num_4"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_5"
+                app:layout_constraintTop_toBottomOf="@id/btn_7"
+                app:layout_constraintBottom_toTopOf="@id/btn_1"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <ImageButton
+                android:id="@+id/btn_5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_5"
+                android:contentDescription="@string/num_5"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintStart_toEndOf="@id/btn_4"
+                app:layout_constraintEnd_toStartOf="@id/btn_6"
+                app:layout_constraintTop_toBottomOf="@id/btn_8"
+                app:layout_constraintBottom_toTopOf="@id/btn_2"/>
 
-                <ImageButton
-                    android:id="@+id/btn_8"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_8"
-                    android:contentDescription="@string/num_8"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_6"
+                android:contentDescription="@string/num_6"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintStart_toEndOf="@id/btn_5"
+                app:layout_constraintBottom_toTopOf="@id/btn_3"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintTop_toBottomOf="@id/btn_9"/>
+            <!--endregion-->
 
-                <ImageButton
-                    android:id="@+id/btn_5"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_5"
-                    android:contentDescription="@string/num_5"
-                    android:enabled="false" />
+            <!-- region Row 2 -->
+            <ImageButton
+                android:id="@+id/btn_1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_1"
+                android:contentDescription="@string/num_1"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintBottom_toTopOf="@id/btn_Sign"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_2"
+                app:layout_constraintTop_toBottomOf="@id/btn_4"/>
 
-                <ImageButton
-                    android:id="@+id/btn_2"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_2"
-                    android:contentDescription="@string/num_2"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_2"
+                android:contentDescription="@string/num_2"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintTop_toBottomOf="@id/btn_5"
+                app:layout_constraintStart_toEndOf="@id/btn_1"
+                app:layout_constraintEnd_toStartOf="@id/btn_3"
+                app:layout_constraintBottom_toTopOf="@id/btn_0"/>
 
-                <ImageButton
-                    android:id="@+id/btn_0"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_0"
-                    android:contentDescription="@string/num_0"
-                    android:enabled="false" />
-            </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_3"
+                android:contentDescription="@string/num_3"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintTop_toBottomOf="@id/btn_6"
+                app:layout_constraintStart_toEndOf="@id/btn_2"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintBottom_toTopOf="@id/btn_Clear" />
+            <!--endregion-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <!--region Row 1-->
+            <ImageButton
+                android:id="@+id/btn_Sign"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_signs"
+                android:contentDescription="@string/pos_neg"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_0"
+                app:layout_constraintTop_toBottomOf="@id/btn_1"/>
 
-                <ImageButton
-                    android:id="@+id/btn_9"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_9"
-                    android:contentDescription="@string/num_9"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_0"
+                android:contentDescription="@string/num_0"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_Sign"
+                app:layout_constraintEnd_toStartOf="@id/btn_Clear"
+                app:layout_constraintTop_toBottomOf="@id/btn_2"/>
 
-                <ImageButton
-                    android:id="@+id/btn_6"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_6"
-                    android:contentDescription="@string/num_6"
-                    android:enabled="false" />
+            <ImageButton
+                android:id="@+id/btn_Clear"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_clear"
+                android:contentDescription="@string/ltr_c"
+                android:enabled="false"
+                app:layout_constraintDimensionRatio="H, 1:1"
+                app:layout_constraintHeight_max="@dimen/btn_numpad"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_0"
+                app:layout_constraintEnd_toStartOf="@id/btn_Equals"
+                app:layout_constraintTop_toBottomOf="@id/btn_3"/>
 
-                <ImageButton
-                    android:id="@+id/btn_3"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_3"
-                    android:contentDescription="@string/num_3"
-                    android:enabled="false" />
-
-                <ImageButton
-                    android:id="@+id/btn_Clear"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_clear"
-                    android:contentDescription="@string/ltr_c"
-                    android:enabled="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/btn_Backspace"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_numpad"
-                    android:background="@drawable/btn_backspace"
-                    android:contentDescription="@string/backspace"
-                    android:enabled="false" />
-
-                <ImageButton
-                    android:id="@+id/btn_Equals"
-                    android:layout_width="@dimen/btn_numpad"
-                    android:layout_height="@dimen/btn_long"
-                    android:background="@drawable/btn_long_check"
-                    android:contentDescription="@string/submit"
-                    android:enabled="false" />
-            </LinearLayout>
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_Equals"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/btn_long_check"
+                android:contentDescription="@string/submit"
+                android:enabled="false"
+                app:layout_constraintHeight_max="@dimen/btn_long"
+                app:layout_constraintWidth_max="@dimen/btn_numpad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_Clear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_6"/>
+            <!--endregion-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -300,7 +374,8 @@
         android:text="@string/number"
         android:textColor="@color/white"
         android:textSize="@dimen/txt_xxl"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_Game_Over"
