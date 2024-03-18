@@ -128,7 +128,6 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
                 }
             }
 
-            Log.d("DIVISION", "generateProblem: $num1 $factors")
             val num2 =
                 if (num1 == 0) (min..max).random()
                 else if (difficulty in arrayOf(

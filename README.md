@@ -1,9 +1,9 @@
 # Math Drills
 Daily math drills to hone your math skills!
 
-- Keep a sharp mind by participating in daily addition, subtraction, multiplication, and/or division operations.
-- 4 difficulties to choose from: easy, intermediate, hard, and wizard!
-- 3 attempts per day for 1-minute and 3-minute drills.
+- Keep a sharp mind by participating in daily Addition, Subtraction, Multiplication, and/or Division operations.
+- 5 difficulties to choose from: Beginner, Easy, Intermediate, Hard, and Math Whiz!
+- 3 attempts per day for Casual (unlimited time), 1-minute and 3-minute drills.
 
 Uses android features, shared preferences, intents, and enums.
 
