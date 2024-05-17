@@ -108,37 +108,65 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
     DIVISION("÷", 3, "Division") {
         override fun apply(t: Int, u: Int): Int = t / u
         override fun generateProblem(difficulty: Difficulty): Problem {
-            val min = difficulty.asdMin
-            val max =
-                if (difficulty == Difficulty.BEGINNER) difficulty.asdMax * 2
-                else difficulty.asdMax
-            val factors = mutableListOf<Int>()
-
-            // B: top = 0-20 >= bottom = 0-20
-            // E: top = 0-100 >= bottom = 0-100
+            // B: top = <=100, bottom = 1-5, 10
+            // E: top = <=120, bottom = 2-9, 11, 12
             // I: top = 0-1000 >= bottom = +/- 0-1000
             // H: top = +/- 0-10000 >= bottom = +/- 0-10000
             // W: top = +/- 0-100000 >= bottom = +/- 0-100000
 
-            val num1 = (min..max).random()
+            if (difficulty == Difficulty.BEGINNER) {
+                val range = intArrayOf(1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 10)
+                val num1 = range.random()
+                val num2 = range.random()
+                val top = num1 * num2
 
-            if (num1 != 0) {
-                for (i in 1..abs(num1)) {
-                    if (num1 % i == 0) factors.add(i)
-                }
+                Log.d("generateProblem", "$top / $num1 = $num2")
+
+                return Problem(top, num1, num2)
             }
+
+            if (difficulty == Difficulty.EASY) {
+                val range = intArrayOf(2, 3, 4, 5, 6, 7, 8, 9, 11, 12)
+                val num1 = range.random()
+                val num2 =
+                    if (num1 in intArrayOf(11, 12)) (2..9).random()
+                    else range.random()
+                val top = num1 * num2
+
+                Log.d("generateProblem", "$top / $num1 = $num2")
+
+                return Problem(top, num1, num2)
+            }
+
+            val min = difficulty.asdMin
+            val max = difficulty.asdMax
+            val tops = mutableListOf<Int>()
+            val factors = mutableListOf<Int>()
+
+            for (i in (min..max)) {
+                if (abs(i) > 1 && i % 5 != 0) {
+                    if(abs(i) < 2) Log.d("generateProblem", "WHAT? $i")
+                    tops.add(i)
+                    tops.add(i)
+                }
+                tops.add(i)
+            }
+
+            val num1 = tops.random()
+
+            tops.removeAll(listOf(0,num1, num1 * -1));
 
             val num2 =
                 if (num1 == 0) (min..max).random()
-                else if (difficulty in arrayOf(
-                        Difficulty.BEGINNER,
-                        Difficulty.EASY
-                    )
-                ) factors.random()
-                else factors.random() * intArrayOf(-1, 1).random()
-            val answer = num1 / num2
+                else {
+                    for (i in tops) {
+                        if(num1 % abs(i) == 0) factors.add(i)
+                    }
+                    Log.d("generateProblem", "$factors")
+                    factors.random() * intArrayOf(-1, 1).random()
+                }
 
-            return Problem(num1, num2, answer)
+            return Problem(num1, num2, num1 / num2)
         }
     };
 }
