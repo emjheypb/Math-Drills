@@ -202,6 +202,7 @@ class DrillStartActivity : AppCompatActivity(), OnClickListener {
             this.sharedPreferences.getInt(currTimerSeconds!!.spName.toString(), defaultAttempts)
         this.prefEditor.putInt(currTimerSeconds!!.spName.toString(), attempts - 1)
         this.prefEditor.apply()
+        if (attempts - 1 <= 0) this.binding.btnTryAgain.visibility = View.GONE
 
         // reset problem
         this.binding.tvNum1.text = getString(R.string.number, 0)
