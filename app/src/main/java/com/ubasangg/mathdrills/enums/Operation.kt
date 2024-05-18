@@ -1,6 +1,5 @@
 package com.ubasangg.mathdrills.enums
 
-import android.util.Log
 import com.ubasangg.mathdrills.classes.Problem
 import com.ubasangg.mathdrills.interfaces.OperationInterface
 import java.util.function.BinaryOperator
@@ -120,8 +119,6 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
                 val num2 = range.random()
                 val top = num1 * num2
 
-                Log.d("generateProblem", "$top / $num1 = $num2")
-
                 return Problem(top, num1, num2)
             }
 
@@ -133,8 +130,6 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
                     else range.random()
                 val top = num1 * num2
 
-                Log.d("generateProblem", "$top / $num1 = $num2")
-
                 return Problem(top, num1, num2)
             }
 
@@ -145,7 +140,6 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
 
             for (i in (min..max)) {
                 if (abs(i) > 1 && i % 5 != 0) {
-                    if(abs(i) < 2) Log.d("generateProblem", "WHAT? $i")
                     tops.add(i)
                     tops.add(i)
                 }
@@ -162,7 +156,7 @@ enum class Operation(val sign: String, val index: Int, val description: String) 
                     for (i in tops) {
                         if(num1 % abs(i) == 0) factors.add(i)
                     }
-                    Log.d("generateProblem", "$factors")
+
                     factors.random() * intArrayOf(-1, 1).random()
                 }
 
