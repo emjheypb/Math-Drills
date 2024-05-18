@@ -90,10 +90,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         MobileAds.initialize(
             this
         ) { }
-
-        // thing to add
-        val reqConfig = RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("8EF0378F82DBA6EE30709DE3B3EC89D4")).build()
-        MobileAds.setRequestConfiguration(reqConfig)
         // endregion
     }
 
@@ -264,17 +260,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 // Make sure to set your reference to null so you don't
                                 // show it a second time.
                                 interstitialAd = null
-                                val attempts =
-                                    sharedPreferences.getInt(
-                                        currTimerSeconds!!.spName.toString(),
-                                        defaultAttempts
-                                    )
-                                prefEditor.putInt(
-                                    currTimerSeconds!!.spName.toString(),
-                                    attempts + 1
-                                )
-                                prefEditor.apply()
-
                                 setLevel()
                             }
 
@@ -285,13 +270,23 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                                 interstitialAd = null
                                 Toast.makeText(
                                     this@MainActivity,
-                                    "Failed to Show Ad",
+                                    "Failed to Show Ad. Try again later.",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
 
                             override fun onAdShowedFullScreenContent() {
                                 // Called when fullscreen content is shown.
+                                val attempts =
+                                    sharedPreferences.getInt(
+                                        currTimerSeconds!!.spName.toString(),
+                                        defaultAttempts
+                                    )
+                                prefEditor.putInt(
+                                    currTimerSeconds!!.spName.toString(),
+                                    attempts + 1
+                                )
+                                prefEditor.apply()
                             }
                         })
                 }
@@ -306,7 +301,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                         loadAdError.code,
                         loadAdError.message
                     )
-                    Toast.makeText(this@MainActivity, "Failed to Load Ad", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Failed to Load Ad. Try again later.", Toast.LENGTH_SHORT).show()
                 }
             })
     }

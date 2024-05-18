@@ -70,5 +70,5 @@
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
     <string name="test_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-6094292382546099/2355266563</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-6094292382546099/2612865985</string>
 </resources>
